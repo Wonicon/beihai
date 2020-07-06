@@ -1,0 +1,44 @@
+RTL_FLIST :=  ../amba/rtl/*.v \
+             ../dev/gpio/rtl/*.v \
+             ../dev/spi/rtl/*.v \
+             ../dev/uart/rtl/uart_apb.v \
+             ../dev/uart/rtl/uart16550/*.v \
+             ../cpu/L2-4MB.v \
+             ../top/soc_top.v \
+             ../lib/mem/*.v \
+
+
+TB_FLIST :=   ../tb/*.v \
+              ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v \
+
+
+NOVAS        := /opt/eda/Synopsys/Verdi2015/share/PLI/VCS/LINUX64
+SIM_TOOL     := vcs
+SIM_OPTIONS  := -full64 +v2k +sv -timescale=1ns/10ps \
+                -sverilog \
+                +vcd+vcdpluson \
+                +notimingcheck \
+                +vcs+flush+all \
+                -debug_access+all \
+                +lint=TFIPC-L \
+                +define+S50 \
+                +define+RANDOMIZE_REG_INIT \
+                +define+RANDOMIZE_MEM_INIT \
+				+incdir+../amba/rtl \
+                +incdir+../dev/gpio/rtl \
+                +incdir+../dev/spiFlash/N25Q128A13E_VG12 \
+                +incdir+../dev/spiFlash/N25Q128A13E_VG12/include \
+                +incdir+../dev/uart/rtl \
+                +incdir+../dev/spi/rtl \
+                +incdir+../top \
+                +incdir+../dev/spiFlash/N25Q128A13E_VG12 \
+                +incdir+../dev/spiFlash/N25Q128A13E_VG12/include \
+                
+simv : ${TB_FLIST} ${RTL_FLIST}
+	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top soc_system
+
+all: simv 
+
+.PHONY : clean
+clean :
+	rm -fr csrc simv.daidir simv ucli.key vcdplus.vpd DVEfiles INCA_libs
