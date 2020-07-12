@@ -7,7 +7,7 @@
 
 //24bit
 `define SPI_FLASH_START  32'h10000000
-`define SPI_FLASH_END    32'h40000000
+`define SPI_FLASH_END    32'h100FFFFF
 
 //20bit
 `define UART_START       32'h41000000
