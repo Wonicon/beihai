@@ -1,3 +1,5 @@
+`define BACKEND
+
 `timescale 1ns / 1ps
 `include "global_define.v"
 `include "amba_define.v"
@@ -140,7 +142,13 @@ wire  [`P_DATA_W-1:0]     fifo_prdata;
 wire                      fifo_pslverr;
 
 
-DualTop top (
+`ifndef BACKEND
+`define TOP DualTop
+`else
+`define TOP SingleTop
+`endif
+
+`TOP top (
   .clock(clk),
   .reset(~rst_n),
   .coreclk(clk),
@@ -160,6 +168,7 @@ DualTop top (
   .debug_ndreset(),
   .debug_dmactive(),
   // }}}
+`ifndef BACKEND
   // {{{ mem_axi4
   .mem_axi4_0_awready(1'b0),
   .mem_axi4_0_awvalid(),
@@ -287,6 +296,16 @@ DualTop top (
   .l2_frontend_bus_axi4_0_rresp(),
   .l2_frontend_bus_axi4_0_rlast(),
   // }}}
+`else
+  .chip_c2b_clk(chiplink_tx_clk),
+  .chip_c2b_rst(chiplink_tx_rst),
+  .chip_c2b_send(chiplink_tx_send),
+  .chip_c2b_data(chiplink_tx_data),
+  .chip_b2c_clk(chiplink_rx_clk),
+  .chip_b2c_rst(chiplink_rx_rst),
+  .chip_b2c_send(chiplink_rx_send),
+  .chip_b2c_data(chiplink_rx_data),
+`endif
   // {{{ apb
   .mmio_apb_0_psel(m_psel),
   .mmio_apb_0_penable(m_penable),
