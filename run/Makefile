@@ -3,7 +3,7 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/spi/rtl/*.v \
              ../dev/uart/rtl/uart_apb.v \
              ../dev/uart/rtl/uart16550/*.v \
-             ../cpu/core.v ../cpu/uncore.v \
+             ../cpu/core.v ../cpu/uncore.v ../cpu/SingleTop.v \
              ../top/soc_top.v \
              ../dev/spi/rtl/spi_defines.v \
              ../dev/spi/rtl/spi_clgen.v \
