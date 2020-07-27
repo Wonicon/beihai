@@ -26,10 +26,10 @@ TB_FLIST :=   ../tb/*.v \
 
 
 
-NOVAS        := /opt/eda/Synopsys/Verdi2015/share/PLI/VCS/LINUX64
-EXTRA        := -cpp g++-4.8 -cc gcc-4.8 -LDFLAGS -Wl,--no-as-needed -P ${NOVAS}/novas.tab ${NOVAS}/pli.a
+NOVAS        := /eda/tools/snps/verdi/O-2018.09-SP2/share/PLI/VCS/linux64
+EXTRA        := -cpp g++ -cc gcc -LDFLAGS -Wl,--no-as-needed -P ${NOVAS}/novas.tab ${NOVAS}/pli.a
 SIM_TOOL     := vcs
-SIM_OPTIONS  := -full64 -PP +v2k +sv -timescale=1ns/10ps \
+SIM_OPTIONS  := -full64 -debug_access+nomemcbk+dmptf -debug_region+cell +v2k +sv -timescale=1ns/10ps \
                 ${EXTRA} \
                 -sverilog \
                 +vcd+vcdpluson \
