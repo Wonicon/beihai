@@ -3,23 +3,39 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/spi/rtl/*.v \
              ../dev/uart/rtl/uart_apb.v \
              ../dev/uart/rtl/uart16550/*.v \
-             ../cpu/L2-4MB.v \
-             ../top/soc_top.v 
+             ../cpu/core.v ../cpu/uncore.v \
+             ../top/soc_top.v \
+             ../dev/spi/rtl/spi_defines.v \
+             ../dev/spi/rtl/spi_clgen.v \
+             ../dev/spi/rtl/spi_shift.v \
+             ../dev/spi/rtl/spi_top.v \
+             ../dev/spi/rtl/spi_flash.v \
+             ../lib/mem/*
+
+
 
 
 TB_FLIST :=   ../tb/*.v \
               ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v \
 
 
-NOVAS        := /opt/eda/Synopsys/Verdi2015/share/PLI/VCS/LINUX64
+
+
+
+
+
+
+
+NOVAS        := /eda/tools/snps/verdi/O-2018.09-SP2/share/PLI/VCS/linux64
+EXTRA        := -cpp g++ -cc gcc -LDFLAGS -Wl,--no-as-needed -P ${NOVAS}/novas.tab ${NOVAS}/pli.a
 SIM_TOOL     := vcs
-SIM_OPTIONS  := -full64 -PP +v2k +sv -timescale=1ns/10ps \
+SIM_OPTIONS  := -full64 -debug_access+nomemcbk+dmptf -debug_region+cell +v2k +sv -timescale=1ns/10ps \
+                ${EXTRA} \
                 -sverilog \
                 +vcd+vcdpluson \
                 +notimingcheck \
                 +vcs+flush+all \
                 +lint=TFIPC-L \
-                -debug_access+class\
                 +define+S50 \
                 +define+RANDOMIZE_REG_INIT \
                 +define+RANDOMIZE_MEM_INIT \
