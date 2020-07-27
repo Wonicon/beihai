@@ -1,10 +1,12 @@
 module asic_top(
 
 //sys clk
-SYS_CLK,
+SYS_CLK_IN,
+SYS_CLK_OUT,
 SYSRSTn,
 //apb clk in
-APB_CLK,
+APB_CLK_IN,
+APB_CLK_OUT,
 //spi
 SPI_CLK,
 SPI_CS0,
@@ -103,10 +105,12 @@ PLL_M7
 
 );
 //sys clk
-input           SYS_CLK;
+input           SYS_CLK_IN;
+output          SYS_CLK_OUT;
 input           SYSRSTn;
 //apb clk in
-input           APB_CLK;
+input           APB_CLK_IN;
+output          APB_CLK_OUT;
 //spi
 output          SPI_CLK;
 output          SPI_CS0;
@@ -267,10 +271,10 @@ soc_top u0_soc_top(
 .gpio_oe(gpio_oe)
 );
 //sys clk
-PDDW04DGZ_H_G u0_SYS_CLK();
+PDXOEDG_H_G u0_SYS_CLK(.E(1'b1),.DS0(),.DS1(),.XIN(SYS_CLK_IN),.XOUT(SYS_CLK_OUT),.XC(clk));
 PDDW04DGZ_H_G u0_SYSRSTn(.C(rst_n),.PAD(SYSRSTn),.I(),.REN(),.OEN(1'b1));
 //
-PDDW04DGZ_H_G u0_APB_CLK();
+PDXOEDG_H_G u0_APB_CLK(.E(1'b1),.DS0(),.DS1(),.XIN(APB_CLK_IN),.XOUT(APB_CLK_OUT),.XC(apb_clk_in));
 //spi
 PDDW04DGZ_H_G u0_SPI_CLK(.C(),.PAD(SPI_CLK),.I(spi_clk),.REN(),.OEN(1'b0));
 PDDW04DGZ_H_G u0_SPI_CS0(.C(),.PAD(SPI_CS0),.I(spi_cs[0]),.REN(),.OEN(1'b0));
@@ -282,10 +286,10 @@ PDDW04DGZ_H_G u0_UART_RX(.C(uart_rx),.PAD(UART_RX),.I(),.REN(),.OEN(1'b1));
 PDDW04DGZ_H_G u0_UART_TX(.C(),.PAD(UART_TX),.I(uart_tx),.REN(),.OEN(1'b0));
 
 //GPIO
-PDDW04DGZ_H_G u0_GPIO0();
-PDDW04DGZ_H_G u0_GPIO1();
-PDDW04DGZ_H_G u0_GPIO2();
-PDDW04DGZ_H_G u0_GPIO3();
+PDDW04DGZ_H_G u0_GPIO0(.C(gpio_o[0]),.PAD(GPIO0),.I(gpio_i[0]),.REN(),.OEN(~gpio_oe[0]));
+PDDW04DGZ_H_G u0_GPIO1(.C(gpio_o[1]),.PAD(GPIO0),.I(gpio_i[1]),.REN(),.OEN(~gpio_oe[1]));
+PDDW04DGZ_H_G u0_GPIO2(.C(gpio_o[2]),.PAD(GPIO0),.I(gpio_i[2]),.REN(),.OEN(~gpio_oe[2]));
+PDDW04DGZ_H_G u0_GPIO3(.C(gpio_o[3]),.PAD(GPIO0),.I(gpio_i[3]),.REN(),.OEN(~gpio_oe[3]));
 //chiplink
 PDDW04DGZ_H_G u0_CHIPLINK_RX_CLK(.C(chiplink_rx_clk),.PAD(CHIPLINK_RX_CLK),.I(),.REN(),.OEN(1'b1));
 PDDW04DGZ_H_G u0_CHIPLINK_RX_RST(.C(chiplink_rx_rst),.PAD(CHIPLINK_RX_RST),.I(),.REN(),.OEN(1'b1));

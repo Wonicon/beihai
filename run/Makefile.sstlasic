@@ -4,11 +4,12 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/uart/rtl/uart_apb.v \
              ../dev/uart/rtl/uart16550/*.v \
              ../cpu/core.v \
-	     ../cpu/uncore.v \
-             ../top/asic_top.v \
+	         ../cpu/uncore.v \
+             ../top/asic_top_sstl.v \
              ../top/soc_top.v \
              ../lib/*.v \
-             ../lib/mem/*.v 
+             ../lib/mem/*.v \
+             ../lib/pll/*.v
 
 TB_FLIST :=   ../tb/*.v \
               ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v \
@@ -37,7 +38,7 @@ SIM_OPTIONS  := -full64  +v2k +sv -timescale=1ns/10ps \
 
 
 simv : ${TB_FLIST} ${RTL_FLIST}
-	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top asic_top
+	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top asic_sstl_top
 
 all: simv 
 
