@@ -160,27 +160,6 @@ DualTop top (
   .debug_ndreset(),
   .debug_dmactive(),
   // }}}
-  // {{{ ila
-  .ila_trigger(),
-  .ila_reg_mip(),
-  .ila_csr_rw_cmd(),
-  .ila_csr_rw_wdata(),
-  .ila_wr_mip(),
-  .ila_reg_mbadaddr(),
-  // }}}
-  // {{{ fpga_trace
-  .fpga_trace_traces_0_valid(),
-  .fpga_trace_traces_0_commPriv(),
-  .fpga_trace_traces_0_commPC(),
-  .fpga_trace_traces_0_commInst(),
-  .fpga_trace_traces_0_isFloat(),
-  .fpga_trace_traces_0_wbValueValid(),
-  .fpga_trace_traces_0_wbARFN(),
-  .fpga_trace_traces_0_wbValue(),
-  .fpga_trace_ex_delayedWbValid(),
-  .fpga_trace_ex_wbARFN(),
-  .fpga_trace_ex_wbValue(),
-  // }}}
   // {{{ mem_axi4
   .mem_axi4_0_awready(1'b0),
   .mem_axi4_0_awvalid(),
