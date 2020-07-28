@@ -1,5 +1,5 @@
 //APB
-`define P_ADDR_W 32
+`define P_ADDR_W 30
 `define P_DATA_W 32 
 `define P_STRB_W `P_DATA_W/8
 

@@ -92,7 +92,77 @@ module asic_sstl_gpio_top(
     CHIPLINK_TX_DAT29_SSTL,
     CHIPLINK_TX_DAT30_SSTL,
     CHIPLINK_TX_DAT31_SSTL,
-
+    //chiplink gpio
+    CHIPLINK_RX_CLK_gpio,
+    CHIPLINK_RX_RST_gpio,
+    CHIPLINK_RX_SEND_gpio,
+    CHIPLINK_RX_DAT0_gpio,
+    CHIPLINK_RX_DAT1_gpio,
+    CHIPLINK_RX_DAT2_gpio,
+    CHIPLINK_RX_DAT3_gpio,
+    CHIPLINK_RX_DAT4_gpio,
+    CHIPLINK_RX_DAT5_gpio,
+    CHIPLINK_RX_DAT6_gpio,
+    CHIPLINK_RX_DAT7_gpio,
+    CHIPLINK_RX_DAT8_gpio,
+    CHIPLINK_RX_DAT9_gpio,
+    CHIPLINK_RX_DAT10_gpio,
+    CHIPLINK_RX_DAT11_gpio,
+    CHIPLINK_RX_DAT12_gpio,
+    CHIPLINK_RX_DAT13_gpio,
+    CHIPLINK_RX_DAT14_gpio,
+    CHIPLINK_RX_DAT15_gpio,
+    CHIPLINK_RX_DAT16_gpio,
+    CHIPLINK_RX_DAT17_gpio,
+    CHIPLINK_RX_DAT18_gpio,
+    CHIPLINK_RX_DAT19_gpio,
+    CHIPLINK_RX_DAT20_gpio,
+    CHIPLINK_RX_DAT21_gpio,
+    CHIPLINK_RX_DAT22_gpio,
+    CHIPLINK_RX_DAT23_gpio,
+    CHIPLINK_RX_DAT24_gpio,
+    CHIPLINK_RX_DAT25_gpio,
+    CHIPLINK_RX_DAT26_gpio,
+    CHIPLINK_RX_DAT27_gpio,
+    CHIPLINK_RX_DAT28_gpio,
+    CHIPLINK_RX_DAT29_gpio,
+    CHIPLINK_RX_DAT30_gpio,
+    CHIPLINK_RX_DAT31_gpio,
+    CHIPLINK_TX_CLK_gpio,
+    CHIPLINK_TX_RST_gpio,
+    CHIPLINK_TX_SEND_gpio,
+    CHIPLINK_TX_DAT0_gpio,
+    CHIPLINK_TX_DAT1_gpio,
+    CHIPLINK_TX_DAT2_gpio,
+    CHIPLINK_TX_DAT3_gpio,
+    CHIPLINK_TX_DAT4_gpio,
+    CHIPLINK_TX_DAT5_gpio,
+    CHIPLINK_TX_DAT6_gpio,
+    CHIPLINK_TX_DAT7_gpio,
+    CHIPLINK_TX_DAT8_gpio,
+    CHIPLINK_TX_DAT9_gpio,
+    CHIPLINK_TX_DAT10_gpio,
+    CHIPLINK_TX_DAT11_gpio,
+    CHIPLINK_TX_DAT12_gpio,
+    CHIPLINK_TX_DAT13_gpio,
+    CHIPLINK_TX_DAT14_gpio,
+    CHIPLINK_TX_DAT15_gpio,
+    CHIPLINK_TX_DAT16_gpio,
+    CHIPLINK_TX_DAT17_gpio,
+    CHIPLINK_TX_DAT18_gpio,
+    CHIPLINK_TX_DAT19_gpio,
+    CHIPLINK_TX_DAT20_gpio,
+    CHIPLINK_TX_DAT21_gpio,
+    CHIPLINK_TX_DAT22_gpio,
+    CHIPLINK_TX_DAT23_gpio,
+    CHIPLINK_TX_DAT24_gpio,
+    CHIPLINK_TX_DAT25_gpio,
+    CHIPLINK_TX_DAT26_gpio,
+    CHIPLINK_TX_DAT27_gpio,
+    CHIPLINK_TX_DAT28_gpio,
+    CHIPLINK_TX_DAT29_gpio,
+    CHIPLINK_TX_DAT30_gpio,
+    CHIPLINK_TX_DAT31_gpio,
     //PLL
     PLL_M0,
     PLL_M1,
@@ -100,8 +170,8 @@ module asic_sstl_gpio_top(
     PLL_M3,
     PLL_M4,
     PLL_M5,
-//    PLL_M6,
-//    PLL_M7
+    //ioctr
+    IOCTR,
 
 );
 //sys clk
@@ -125,7 +195,7 @@ inout           GPIO0;
 inout           GPIO1;
 inout           GPIO2;
 inout           GPIO3;
-//chiplink
+//chiplink sstl
 input           CHIPLINK_RX_CLK_SSTL;
 input           CHIPLINK_RX_RST_SSTL;
 input           CHIPLINK_RX_SEND_SSTL;
@@ -196,7 +266,77 @@ output          CHIPLINK_TX_DAT28_SSTL;
 output          CHIPLINK_TX_DAT29_SSTL;
 output          CHIPLINK_TX_DAT30_SSTL;
 output          CHIPLINK_TX_DAT31_SSTL;
-
+//chiplink gpio
+input           CHIPLINK_RX_CLK_gpio;
+input           CHIPLINK_RX_RST_gpio;
+input           CHIPLINK_RX_SEND_gpio;
+input           CHIPLINK_RX_DAT0_gpio;
+input           CHIPLINK_RX_DAT1_gpio;
+input           CHIPLINK_RX_DAT2_gpio;
+input           CHIPLINK_RX_DAT3_gpio;
+input           CHIPLINK_RX_DAT4_gpio;
+input           CHIPLINK_RX_DAT5_gpio;
+input           CHIPLINK_RX_DAT6_gpio;
+input           CHIPLINK_RX_DAT7_gpio;
+input           CHIPLINK_RX_DAT8_gpio;
+input           CHIPLINK_RX_DAT9_gpio;
+input           CHIPLINK_RX_DAT10_gpio;
+input           CHIPLINK_RX_DAT11_gpio;
+input           CHIPLINK_RX_DAT12_gpio;
+input           CHIPLINK_RX_DAT13_gpio;
+input           CHIPLINK_RX_DAT14_gpio;
+input           CHIPLINK_RX_DAT15_gpio;
+input           CHIPLINK_RX_DAT16_gpio;
+input           CHIPLINK_RX_DAT17_gpio;
+input           CHIPLINK_RX_DAT18_gpio;
+input           CHIPLINK_RX_DAT19_gpio;
+input           CHIPLINK_RX_DAT20_gpio;
+input           CHIPLINK_RX_DAT21_gpio;
+input           CHIPLINK_RX_DAT22_gpio;
+input           CHIPLINK_RX_DAT23_gpio;
+input           CHIPLINK_RX_DAT24_gpio;
+input           CHIPLINK_RX_DAT25_gpio;
+input           CHIPLINK_RX_DAT26_gpio;
+input           CHIPLINK_RX_DAT27_gpio;
+input           CHIPLINK_RX_DAT28_gpio;
+input           CHIPLINK_RX_DAT29_gpio;
+input           CHIPLINK_RX_DAT30_gpio;
+input           CHIPLINK_RX_DAT31_gpio;
+output          CHIPLINK_TX_CLK_gpio;
+output          CHIPLINK_TX_RST_gpio;
+output          CHIPLINK_TX_SEND_gpio;
+output          CHIPLINK_TX_DAT0_gpio;
+output          CHIPLINK_TX_DAT1_gpio;
+output          CHIPLINK_TX_DAT2_gpio;
+output          CHIPLINK_TX_DAT3_gpio;
+output          CHIPLINK_TX_DAT4_gpio;
+output          CHIPLINK_TX_DAT5_gpio;
+output          CHIPLINK_TX_DAT6_gpio;
+output          CHIPLINK_TX_DAT7_gpio;
+output          CHIPLINK_TX_DAT8_gpio;
+output          CHIPLINK_TX_DAT9_gpio;
+output          CHIPLINK_TX_DAT10_gpio;
+output          CHIPLINK_TX_DAT11_gpio;
+output          CHIPLINK_TX_DAT12_gpio;
+output          CHIPLINK_TX_DAT13_gpio;
+output          CHIPLINK_TX_DAT14_gpio;
+output          CHIPLINK_TX_DAT15_gpio;
+output          CHIPLINK_TX_DAT16_gpio;
+output          CHIPLINK_TX_DAT17_gpio;
+output          CHIPLINK_TX_DAT18_gpio;
+output          CHIPLINK_TX_DAT19_gpio;
+output          CHIPLINK_TX_DAT20_gpio;
+output          CHIPLINK_TX_DAT21_gpio;
+output          CHIPLINK_TX_DAT22_gpio;
+output          CHIPLINK_TX_DAT23_gpio;
+output          CHIPLINK_TX_DAT24_gpio;
+output          CHIPLINK_TX_DAT25_gpio;
+output          CHIPLINK_TX_DAT26_gpio;
+output          CHIPLINK_TX_DAT27_gpio;
+output          CHIPLINK_TX_DAT28_gpio;
+output          CHIPLINK_TX_DAT29_gpio;
+output          CHIPLINK_TX_DAT30_gpio;
+output          CHIPLINK_TX_DAT31_gpio;
 //PLL
 input           PLL_M0;
 input           PLL_M1;
@@ -206,7 +346,8 @@ input           PLL_M4;
 input           PLL_M5;
 //input           PLL_M6;
 //input           PLL_M7;
-
+//ioctr
+input           IOCTR;
 
 wire            clk;
 wire            rst_n;
@@ -219,33 +360,48 @@ wire            spi_clk;
 wire            spi_mosi;
 wire            spi_miso;
 
-//chiplink
+//chiplink sstl
 wire            chiplink_rx_clk_sstl;
 wire            chiplink_rx_rst_sstl;
 wire            chiplink_rx_send_sstl;
-reg [`chiplink_data_w - 1 : 0]  chiplink_rx_data_sstl;
+wire [`chiplink_data_w - 1 : 0]  chiplink_rx_data_sstl;
 
 wire            chiplink_tx_clk_sstl;
 wire            chiplink_tx_rst_sstl;
 wire            chiplink_tx_send_sstl;
-reg [`chiplink_data_w - 1 : 0]  chiplink_tx_data_sstl;
+wire [`chiplink_data_w - 1 : 0]  chiplink_tx_data_sstl;
+//chiplink gpio
+wire            chiplink_rx_clk_gpio;
+wire            chiplink_rx_rst_gpio;
+wire            chiplink_rx_send_gpio;
+wire [`chiplink_data_w - 1 : 0]  chiplink_rx_data_gpio;
+
+wire            chiplink_tx_clk_gpio;
+wire            chiplink_tx_rst_gpio;
+wire            chiplink_tx_send_gpio;
+wire [`chiplink_data_w - 1 : 0]  chiplink_tx_data_gpio;
+
+//chiplink link soc
+reg            chiplink_rx_clk;
+reg            chiplink_rx_rst;
+reg            chiplink_rx_send;
+reg [`chiplink_data_w - 1 : 0]  chiplink_rx_data;
+
+reg            chiplink_tx_clk;
+reg            chiplink_tx_rst;
+reg            chiplink_tx_send;
+reg [`chiplink_data_w - 1 : 0]  chiplink_tx_data;
 //uart
 wire            uart_rx;
 wire            uart_tx;
 //gpio
-
 wire [`GPIO_W-1:0]  gpio_i;
 wire [`GPIO_W-1:0]  gpio_o;
 wire [`GPIO_W-1:0]  gpio_oe;
-
-
 //pll
-
-
-
-
 wire     [5:0]       pll_cfg;
-
+//IO ctr
+reg                 ioctr;  
 
 
 
@@ -271,39 +427,42 @@ crg u0_crg(
 
 
 soc_top u0_soc_top(
-//cpu clock in
-.clk(clk),
-.rst_n(rst_n),
+    //cpu clock in
+    .clk(clk),
+    .rst_n(rst_n),
 
-//apb clk
-.apb_clk_in(apb_clk_in),
-//spi
-.spi_cs(spi_cs),
-.spi_clk(spi_clk),
-.spi_mosi(spi_mosi),
-.spi_miso(spi_miso),
+    //apb clk
+    .apb_clk_in(apb_clk_in),
+    //spi
+    .spi_cs(spi_cs),
+    .spi_clk(spi_clk),
+    .spi_mosi(spi_mosi),
+    .spi_miso(spi_miso),
 
-//chiplink
-.chiplink_rx_clk(chiplink_rx_clk_sstl),
-.chiplink_rx_rst(chiplink_rx_rst_sstl),
-.chiplink_rx_send(chiplink_rx_send_sstl),
-.chiplink_rx_data(chiplink_rx_data_sstl),
+    //chiplink
+    .chiplink_rx_clk(chiplink_rx_clk),
+    .chiplink_rx_rst(chiplink_rx_rst),
+    .chiplink_rx_send(chiplink_rx_send),
+    .chiplink_rx_data(chiplink_rx_data),
 
-.chiplink_tx_clk(chiplink_tx_clk_sstl),
-.chiplink_tx_rst(chiplink_tx_rst_sstl),
-.chiplink_tx_send(chiplink_tx_send_sstl),
-.chiplink_tx_data(chiplink_tx_data_sstl),
-//uart
-.uart_rx(uart_rx),
-.uart_tx(uart_tx),
-//gpio
+    .chiplink_tx_clk(chiplink_tx_clk),
+    .chiplink_tx_rst(chiplink_tx_rst),
+    .chiplink_tx_send(chiplink_tx_send),
+    .chiplink_tx_data(chiplink_tx_data),
+    //uart
+    .uart_rx(uart_rx),
+    .uart_tx(uart_tx),
+    //gpio
 
-.gpio_i(gpio_i),
-.gpio_o(gpio_o),
-.gpio_oe(gpio_oe)
+    .gpio_i(gpio_i),
+    .gpio_o(gpio_o),
+    .gpio_oe(gpio_oe)
 );
 
-`define OE 1'b1
+
+`define OEN 1'b1 //gpio
+
+`define OE 1'b1  
 `define IOM 3'b001  //xx0 = DDR modexx1 = CMOS mode
 `define SR 2'b00 //00 = Fast mode. Constant driver impedance for high performance. 01 = Fast mode. Minimized crowbar current for low power.10 = Slow mode. Constant driver impedance for high performance. 11 = Slow mode. Minimized crowbar current for low power.
 `define PDR 1'b0 //0 = normal operation 1 = input buffer powered down DI and DT are set to logic 0 when the receiver is powered down
@@ -320,25 +479,25 @@ soc_top u0_soc_top(
 `define DQSR 4'b000 //DQS/DQS_b glitch suppression resistor controls
 //sys clk
 PDXOEDG_H_G u0_SYS_CLK(.E(1'b1),.DS0(),.DS1(),.XIN(SYS_CLK_IN),.XOUT(SYS_CLK_OUT),.XC(clk));
-PDDW04DGZ_H_G u0_SYSRSTn(.C(rst_n),.PAD(SYSRSTn),.I(),.REN(),.OEN(1'b1));
+PDDW04DGZ_H_G u0_SYSRSTn(.C(rst_n),.PAD(SYSRSTn),.I(),.REN(),.OEN(`OEN));
 //
-//PDXOEDG_H_G u0_APB_CLK(.E(1'b1),.DS0(),.DS1(),.XIN(APB_CLK_IN),.XOUT(APB_CLK_OUT),.XC(apb_clk_in));
+//PDXOEDG_H_G u0_APB_CLK(.E(`OEN),.DS0(),.DS1(),.XIN(APB_CLK_IN),.XOUT(APB_CLK_OUT),.XC(apb_clk_in));
 //spi
-PDDW04DGZ_H_G u0_SPI_CLK(.C(),.PAD(SPI_CLK),.I(spi_clk),.REN(),.OEN(1'b0));
-PDDW04DGZ_H_G u0_SPI_CS0(.C(),.PAD(SPI_CS0),.I(spi_cs[0]),.REN(),.OEN(1'b0));
-PDDW04DGZ_H_G u0_SPI_CS1(.C(),.PAD(SPI_CS1),.I(spi_cs[1]),.REN(),.OEN(1'b0));
-PDDW04DGZ_H_G u0_SPI_MISO(.C(spi_miso),.PAD(SPI_MISO),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_SPI_MOSI(.C(),.PAD(SPI_MOSI),.I(spi_mosi),.REN(),.OEN(1'b0));
+PDDW04DGZ_H_G u0_SPI_CLK(.C(),.PAD(SPI_CLK),.I(spi_clk),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_SPI_CS0(.C(),.PAD(SPI_CS0),.I(spi_cs[0]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_SPI_CS1(.C(),.PAD(SPI_CS1),.I(spi_cs[1]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_SPI_MISO(.C(spi_miso),.PAD(SPI_MISO),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_SPI_MOSI(.C(),.PAD(SPI_MOSI),.I(spi_mosi),.REN(),.OEN(~`OEN));
 //uart
-PDDW04DGZ_H_G u0_UART_RX(.C(uart_rx),.PAD(UART_RX),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_UART_TX(.C(),.PAD(UART_TX),.I(uart_tx),.REN(),.OEN(1'b0));
+PDDW04DGZ_H_G u0_UART_RX(.C(uart_rx),.PAD(UART_RX),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_UART_TX(.C(),.PAD(UART_TX),.I(uart_tx),.REN(),.OEN(~`OEN));
 //pll
-PDDW04DGZ_H_G u0_PLL_M0(.C(pll_cfg[0]),.PAD(PLL_M0),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_PLL_M1(.C(pll_cfg[1]),.PAD(PLL_M1),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_PLL_M2(.C(pll_cfg[2]),.PAD(PLL_M2),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_PLL_M3(.C(pll_cfg[3]),.PAD(PLL_M3),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_PLL_M4(.C(pll_cfg[4]),.PAD(PLL_M4),.I(),.REN(),.OEN(1'b1));
-PDDW04DGZ_H_G u0_PLL_M5(.C(pll_cfg[5]),.PAD(PLL_M5),.I(),.REN(),.OEN(1'b1));
+PDDW04DGZ_H_G u0_PLL_M0(.C(pll_cfg[0]),.PAD(PLL_M0),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_PLL_M1(.C(pll_cfg[1]),.PAD(PLL_M1),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_PLL_M2(.C(pll_cfg[2]),.PAD(PLL_M2),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_PLL_M3(.C(pll_cfg[3]),.PAD(PLL_M3),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_PLL_M4(.C(pll_cfg[4]),.PAD(PLL_M4),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_PLL_M5(.C(pll_cfg[5]),.PAD(PLL_M5),.I(),.REN(),.OEN(`OEN));
 
 
 //GPIO
@@ -346,7 +505,81 @@ PDDW04DGZ_H_G u0_GPIO0(.C(gpio_o[0]),.PAD(GPIO0),.I(gpio_i[0]),.REN(),.OEN(~gpio
 PDDW04DGZ_H_G u0_GPIO1(.C(gpio_o[1]),.PAD(GPIO0),.I(gpio_i[1]),.REN(),.OEN(~gpio_oe[1]));
 PDDW04DGZ_H_G u0_GPIO2(.C(gpio_o[2]),.PAD(GPIO0),.I(gpio_i[2]),.REN(),.OEN(~gpio_oe[2]));
 PDDW04DGZ_H_G u0_GPIO3(.C(gpio_o[3]),.PAD(GPIO0),.I(gpio_i[3]),.REN(),.OEN(~gpio_oe[3]));
-//chiplink
+//IO CTR
+PDDW04DGZ_H_G u0_IOCTR(.C(ioctr),.PAD(IOCTR),.I(),.REN(),.OEN(`OEN));
+//chiplink gpio
+PDDW04DGZ_H_G u0_CHIPLINK_RX_CLK_GPIO(.C(chiplink_rx_clk_gpio),.PAD(CHIPLINK_RX_CLK),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_RST_GPIO(.C(chiplink_rx_rst_gpio),.PAD(CHIPLINK_RX_RST),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_SEND_GPIO(.C(chiplink_rx_send_gpio),.PAD(CHIPLINK_RX_SEND),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT0_GPIO(.C(chiplink_rx_data_gpio[0]),.PAD(CHIPLINK_RX_DAT0),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT1_GPIO(.C(chiplink_rx_data_gpio[1]),.PAD(CHIPLINK_RX_DAT1),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT2_GPIO(.C(chiplink_rx_data_gpio[2]),.PAD(CHIPLINK_RX_DAT2),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT3_GPIO(.C(chiplink_rx_data_gpio[3]),.PAD(CHIPLINK_RX_DAT3),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT4_GPIO(.C(chiplink_rx_data_gpio[4]),.PAD(CHIPLINK_RX_DAT4),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT5_GPIO(.C(chiplink_rx_data_gpio[5]),.PAD(CHIPLINK_RX_DAT5),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT6_GPIO(.C(chiplink_rx_data_gpio[6]),.PAD(CHIPLINK_RX_DAT6),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT7_GPIO(.C(chiplink_rx_data_gpio[7]),.PAD(CHIPLINK_RX_DAT7),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT8_GPIO(.C(chiplink_rx_data_gpio[8]),.PAD(CHIPLINK_RX_DAT8),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT9_GPIO(.C(chiplink_rx_data_gpio[9]),.PAD(CHIPLINK_RX_DAT9),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT10_GPIO(.C(chiplink_rx_data_gpio[10]),.PAD(CHIPLINK_RX_DAT10),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT11_GPIO(.C(chiplink_rx_data_gpio[11]),.PAD(CHIPLINK_RX_DAT11),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT12_GPIO(.C(chiplink_rx_data_gpio[12]),.PAD(CHIPLINK_RX_DAT12),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT13_GPIO(.C(chiplink_rx_data_gpio[13]),.PAD(CHIPLINK_RX_DAT13),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT14_GPIO(.C(chiplink_rx_data_gpio[14]),.PAD(CHIPLINK_RX_DAT14),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT15_GPIO(.C(chiplink_rx_data_gpio[15]),.PAD(CHIPLINK_RX_DAT15),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT16_GPIO(.C(chiplink_rx_data_gpio[16]),.PAD(CHIPLINK_RX_DAT16),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT17_GPIO(.C(chiplink_rx_data_gpio[17]),.PAD(CHIPLINK_RX_DAT17),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT18_GPIO(.C(chiplink_rx_data_gpio[18]),.PAD(CHIPLINK_RX_DAT18),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT19_GPIO(.C(chiplink_rx_data_gpio[19]),.PAD(CHIPLINK_RX_DAT19),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT20_GPIO(.C(chiplink_rx_data_gpio[20]),.PAD(CHIPLINK_RX_DAT20),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT21_GPIO(.C(chiplink_rx_data_gpio[21]),.PAD(CHIPLINK_RX_DAT21),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT22_GPIO(.C(chiplink_rx_data_gpio[22]),.PAD(CHIPLINK_RX_DAT22),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT23_GPIO(.C(chiplink_rx_data_gpio[23]),.PAD(CHIPLINK_RX_DAT23),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT24_GPIO(.C(chiplink_rx_data_gpio[24]),.PAD(CHIPLINK_RX_DAT24),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT25_GPIO(.C(chiplink_rx_data_gpio[25]),.PAD(CHIPLINK_RX_DAT25),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT26_GPIO(.C(chiplink_rx_data_gpio[26]),.PAD(CHIPLINK_RX_DAT26),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT27_GPIO(.C(chiplink_rx_data_gpio[27]),.PAD(CHIPLINK_RX_DAT27),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT28_GPIO(.C(chiplink_rx_data_gpio[28]),.PAD(CHIPLINK_RX_DAT28),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT29_GPIO(.C(chiplink_rx_data_gpio[29]),.PAD(CHIPLINK_RX_DAT29),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT30_GPIO(.C(chiplink_rx_data_gpio[30]),.PAD(CHIPLINK_RX_DAT30),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_RX_DAT31_GPIO(.C(chiplink_rx_data_gpio[31]),.PAD(CHIPLINK_RX_DAT31),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_CLK_GPIO(.C(),.PAD(CHIPLINK_TX_CLK),.I(chiplink_tx_clk_gpio),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_RST_GPIO(.C(),.PAD(CHIPLINK_TX_RST),.I(chiplink_tx_rst_gpio),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_SEND_GPIO(.C(),.PAD(CHIPLINK_TX_SEND),.I(chiplink_tx_send_gpio),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT0_GPIO(.C(),.PAD(CHIPLINK_TX_DAT0),.I(chiplink_tx_data_gpio[0]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT1_GPIO(.C(),.PAD(CHIPLINK_TX_DAT1),.I(chiplink_tx_data_gpio[1]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT2_GPIO(.C(),.PAD(CHIPLINK_TX_DAT2),.I(chiplink_tx_data_gpio[2]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT3_GPIO(.C(),.PAD(CHIPLINK_TX_DAT3),.I(chiplink_tx_data_gpio[3]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT4_GPIO(.C(),.PAD(CHIPLINK_TX_DAT4),.I(chiplink_tx_data_gpio[4]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT5_GPIO(.C(),.PAD(CHIPLINK_TX_DAT5),.I(chiplink_tx_data_gpio[5]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT6_GPIO(.C(),.PAD(CHIPLINK_TX_DAT6),.I(chiplink_tx_data_gpio[6]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT7_GPIO(.C(),.PAD(CHIPLINK_TX_DAT7),.I(chiplink_tx_data_gpio[7]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT8_GPIO(.C(),.PAD(CHIPLINK_TX_DAT8),.I(chiplink_tx_data_gpio[8]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT9_GPIO(.C(),.PAD(CHIPLINK_TX_DAT9),.I(chiplink_tx_data_gpio[9]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT10_GPIO(.C(),.PAD(CHIPLINK_TX_DAT10),.I(chiplink_tx_data_gpio[10]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT11_GPIO(.C(),.PAD(CHIPLINK_TX_DAT11),.I(chiplink_tx_data_gpio[11]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT12_GPIO(.C(),.PAD(CHIPLINK_TX_DAT12),.I(chiplink_tx_data_gpio[12]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT13_GPIO(.C(),.PAD(CHIPLINK_TX_DAT13),.I(chiplink_tx_data_gpio[13]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT14_GPIO(.C(),.PAD(CHIPLINK_TX_DAT14),.I(chiplink_tx_data_gpio[14]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT15_GPIO(.C(),.PAD(CHIPLINK_TX_DAT15),.I(chiplink_tx_data_gpio[15]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT16_GPIO(.C(),.PAD(CHIPLINK_TX_DAT16),.I(chiplink_tx_data_gpio[16]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT17_GPIO(.C(),.PAD(CHIPLINK_TX_DAT17),.I(chiplink_tx_data_gpio[17]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT18_GPIO(.C(),.PAD(CHIPLINK_TX_DAT18),.I(chiplink_tx_data_gpio[18]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT19_GPIO(.C(),.PAD(CHIPLINK_TX_DAT19),.I(chiplink_tx_data_gpio[19]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT20_GPIO(.C(),.PAD(CHIPLINK_TX_DAT20),.I(chiplink_tx_data_gpio[20]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT21_GPIO(.C(),.PAD(CHIPLINK_TX_DAT21),.I(chiplink_tx_data_gpio[21]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT22_GPIO(.C(),.PAD(CHIPLINK_TX_DAT22),.I(chiplink_tx_data_gpio[22]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT23_GPIO(.C(),.PAD(CHIPLINK_TX_DAT23),.I(chiplink_tx_data_gpio[23]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT24_GPIO(.C(),.PAD(CHIPLINK_TX_DAT24),.I(chiplink_tx_data_gpio[24]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT25_GPIO(.C(),.PAD(CHIPLINK_TX_DAT25),.I(chiplink_tx_data_gpio[25]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT26_GPIO(.C(),.PAD(CHIPLINK_TX_DAT26),.I(chiplink_tx_data_gpio[26]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT27_GPIO(.C(),.PAD(CHIPLINK_TX_DAT27),.I(chiplink_tx_data_gpio[27]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT28_GPIO(.C(),.PAD(CHIPLINK_TX_DAT28),.I(chiplink_tx_data_gpio[28]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT29_GPIO(.C(),.PAD(CHIPLINK_TX_DAT29),.I(chiplink_tx_data_gpio[29]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT30_GPIO(.C(),.PAD(CHIPLINK_TX_DAT30),.I(chiplink_tx_data_gpio[30]),.REN(),.OEN(~`OEN));
+PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT31_GPIO(.C(),.PAD(CHIPLINK_TX_DAT31),.I(chiplink_tx_data_gpio[31]),.REN(),.OEN(~`OEN));
+
+//chiplink sstl
 DWC_D4MV_PDIFF_NS u0_CHIPLINK_RX_CLK_SSTL(
                             .PAD(CHIPLINK_RX_CLK_SSTL),
                             .OE(`OE),
@@ -2386,6 +2619,29 @@ DWC_D4MV_PDDRIO_NS u0_CHIPLINK_TX_DAT31(
                             .MVREFSE(),
                             .RK());
 
+
+
+
+//IO　SELT
+assign chiplink_rx_clk  =   ioctr   ?   chiplink_rx_clk_sstl : chiplink_rx_clk_gpio;
+assign chiplink_rx_rst  =   ioctr   ?   chiplink_rx_rst_sstl : chiplink_rx_rst_gpio;
+assign chiplink_rx_send =   ioctr   ?   chiplink_rx_send_sstl : chiplink_rx_send_gpio;
+assign chiplink_rx_data =   ioctr   ?   chiplink_rx_data_sstl : chiplink_rx_data_gpio;
+/*
+assign chiplink_tx_clk  =   ioctr   ?   chiplink_tx_clk_sstl : chiplink_tx_clk_gpio;
+assign chiplink_tx_rst  =   ioctr   ?   chiplink_tx_rst_sstl : chiplink_tx_rst_gpio;
+assign chiplink_tx_send =   ioctr   ?   chiplink_tx_send_sstl : chiplink_tx_send_gpio;
+assign chiplink_tx_data =   ioctr   ?   chiplink_tx_data_sstl : chiplink_tx_data_gpio;   
+*/
+assign chiplink_tx_clk_sstl = chiplink_tx_clk;
+assign chiplink_tx_rst_sstl = chiplink_tx_rst;
+assign chiplink_tx_send_sstl = chiplink_tx_send;
+assign chiplink_tx_data_sstl = chiplink_tx_data;
+
+assign chiplink_tx_clk_gpio = chiplink_tx_clk;
+assign chiplink_tx_rst_gpio = chiplink_tx_rst;
+assign chiplink_tx_send_gpio = chiplink_tx_send;
+assign chiplink_tx_data_gpio = chiplink_tx_data;
 endmodule
 
 

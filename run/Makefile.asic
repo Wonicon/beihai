@@ -4,7 +4,7 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/uart/rtl/uart_apb.v \
              ../dev/uart/rtl/uart16550/*.v \
              ../cpu/core.v \
-	     ../cpu/uncore.v \
+	         ../cpu/uncore.v \
              ../top/asic_top.v \
              ../top/soc_top.v \
              ../lib/*.v \

@@ -444,7 +444,7 @@ uart_apb u0_uart_apb
   .PENABLE   (s_penable1),
   .PREADY    (s_pready1),
   .PERR      (s_pslverr1),
-  .PADDR     (s_paddr1),
+  .PADDR     ({2'b00,s_paddr1}),
   .PWRITE    (s_pwrite1),
   .PRDATA    (s_prdata1),
   .PWDATA    (s_pwdata1),
@@ -473,7 +473,7 @@ gpio_apb u0_gpio_apb
   //apb
   .pclk(s_pclk2),
   .preset(!s_presetn2),
-  .paddr(s_paddr2),
+  .paddr({2'b00,s_paddr2}),
   .psel(s_psel2),
   .penable(s_penable2),
   .pwrite(s_pwrite2),

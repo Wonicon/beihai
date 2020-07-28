@@ -34,7 +34,7 @@ SIM_OPTIONS  := -full64  +v2k +sv -timescale=1ns/10ps \
                 +incdir+../dev/spi/rtl \
                 +incdir+../top \
                 +incdir+../dev/spiFlash/N25Q128A13E_VG12 \
-                +incdir+../dev/spiFlash/N25Q128A13E_VG12/include \
+                +incdir+../dev/spiFlash/Nb 9925Q128A13E_VG12/include \
 
 
 simv : ${TB_FLIST} ${RTL_FLIST}
