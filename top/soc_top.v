@@ -513,9 +513,6 @@ module div_2 (clk_out,clk,reset);
     input reset;
     input clk;
     reg clk_out;
-    always @ (posedge clk or posedge reset)
-    if (reset)
-      clk_out<=1'b0; 
-      else
+    always @ (posedge clk)
       clk_out<=~clk_out; 
 endmodule
