@@ -5,10 +5,12 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/uart/rtl/uart16550/*.v \
              ../cpu/core.v \
 	         ../cpu/uncore.v \
+             ../cpu/SingleTop.v \
              ../top/asic_top.v \
              ../top/soc_top.v \
              ../lib/*.v \
-             ../lib/mem/*.v 
+             ../lib/mem/*.v \
+             ../lib/pll/*.v
 
 TB_FLIST :=   ../tb/*.v \
               ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v \

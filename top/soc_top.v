@@ -142,6 +142,19 @@ wire  [`P_DATA_W-1:0]     fifo_prdata;
 wire                      fifo_pslverr;
 
 
+//top top.clock is div 2 top.coreclk
+//make top.clock named dev_clk
+//core clock is core_clk
+
+wire        core_clk;
+wire        dev_clk;
+assign core_clk = clk;
+div_2 u0_div2(
+  .clk_out(dev_clk),
+  .clk(clk),
+  .reset(~rst_n)
+);
+
 `ifndef BACKEND
 `define TOP DualTop
 `else
@@ -149,9 +162,9 @@ wire                      fifo_pslverr;
 `endif
 
 `TOP top (
-  .clock(clk),
+  .clock(dev_clk),
   .reset(~rst_n),
-  .coreclk(clk),
+  .coreclk(core_clk),
   .corerst(~rst_n),
   .interrupts(7'd0),
   .reset_to_hang_en(1'b0),
@@ -492,4 +505,17 @@ gpio_apb u0_gpio_apb
   .clk_pad_i()
 );
 
+endmodule
+
+
+module div_2 (clk_out,clk,reset); 
+    output clk_out;
+    input reset;
+    input clk;
+    reg clk_out;
+    always @ (posedge clk or posedge reset)
+    if (reset)
+      clk_out<=1'b0; 
+      else
+      clk_out<=~clk_out; 
 endmodule
