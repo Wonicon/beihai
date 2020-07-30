@@ -512,7 +512,7 @@ module div_2 (clk_out,clk,reset);
     output clk_out;
     input reset;
     input clk;
-    reg clk_out;
+    reg clk_out=1'b0;
     always @ (posedge clk)
       clk_out<=~clk_out; 
 endmodule
