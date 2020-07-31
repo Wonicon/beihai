@@ -277,7 +277,8 @@ soc_top u0_soc_top(
 .spi_miso(spi_miso),
 
 //chiplink
-.chiplink_rx_clk(chiplink_rx_clk),
+//.chiplink_rx_clk(chiplink_rx_clk),
+.chiplink_rx_clk(clk_chiplink),
 .chiplink_rx_rst(chiplink_rx_rst),
 .chiplink_rx_send(chiplink_rx_send),
 .chiplink_rx_data(chiplink_rx_data),
@@ -483,9 +484,9 @@ module crg(
 
 
     //pll1
-    always@(pll_cfg[2:0] ) begin
-        case(pll_cfg[2:0])
-        3'b000: begin //pll_1 bypass
+    always@(pll_cfg[3:0] ) begin
+        case(pll_cfg[3:0])
+        4'b0000: begin //pll_1 bypass
             //pll1
             BYPASS_1 = 1'b1;
             REFDIV_1		= 6'b000010;		
@@ -498,7 +499,7 @@ module crg(
             FOUTVCOPD_1     = 1'b0;
     
         end
-        3'b001: begin //pll_1 5 
+        4'b0001: begin //pll_1 5 
             //pll1
             BYPASS_1 = 1'b0;
             REFDIV_1		= 6'b000010;		
@@ -511,7 +512,7 @@ module crg(
             FOUTVCOPD_1     = 1'b0;
         
         end
-        3'b010: begin //pll_1 6 
+        4'b0010: begin //pll_1 6 
             //pll1
             BYPASS_1 = 1'b0;
             REFDIV_1		= 6'b000010;		
@@ -523,15 +524,96 @@ module crg(
             FOUTPOSTDIVPD_1 = 1'b0;
             FOUTVCOPD_1     = 1'b0;
         end
-        default: begin //
+        4'b0011: begin //pll_1 7
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd28;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        4'b0100: begin //pll_1 8
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd32;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        4'b0101: begin //pll_1 9
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd36;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        4'b0110: begin //pll_1 10
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd40;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        4'b0111: begin //pll_1 11
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd44;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        4'b1000: begin //pll_1 12
+            //pll1
+            BYPASS_1 = 1'b0;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd48;		
+            POSTDIV1_1		= 3'b010;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
+        end
+        default: begin //bypass
+            BYPASS_1 = 1'b1;
+            REFDIV_1		= 6'b000010;		
+		    FBDIV_1			= 12'd20;		
+            POSTDIV1_1		= 3'b001;		
+            POSTDIV2_1		= 3'b001;		
+            PD_1			= 1'b0;			
+            DSMPD_1			= 1'b1;	
+            FOUTPOSTDIVPD_1 = 1'b0;
+            FOUTVCOPD_1     = 1'b0;
         end
         endcase
     end
 
     //pll2
-    always@(pll_cfg[5:3] ) begin
-        case(pll_cfg[5:3])
-        3'b000: begin //pll_2 bypass
+    always@(pll_cfg[5:4] ) begin
+        case(pll_cfg[5:4])
+        2'b00: begin //pll_2 bypass
             //pll2
             BYPASS_2 = 1'b1;
             REFDIV_2		= 6'b000010;		
@@ -543,11 +625,11 @@ module crg(
             FOUTPOSTDIVPD_2 = 1'b0;
             FOUTVCOPD_2     = 1'b0;
         end
-        3'b001: begin // pll_2 2
+        2'b01: begin // pll_2 1.5
             //pll2
             BYPASS_2 = 1'b0;
-            REFDIV_2		= 6'b000010;		
-		    FBDIV_2			= 12'h20;		
+            REFDIV_2		= 6'b000100;		
+		    FBDIV_2			= 12'd30;		
             POSTDIV1_2		= 3'b101;		
             POSTDIV2_2		= 3'b001;		
             PD_2			= 1'b0;			
@@ -555,28 +637,36 @@ module crg(
             FOUTPOSTDIVPD_2 = 1'b0;
             FOUTVCOPD_2     = 1'b0;
         end
-        3'b010: begin //pll_2 3
+        2'b10: begin //pll_2 2
             //pll2
             BYPASS_2 = 1'b0;
             REFDIV_2		= 6'b000010;		
-		    FBDIV_2			= 12'h24;		
-            POSTDIV1_2		= 3'b100;		
+		    FBDIV_2			= 12'd24;		
+            POSTDIV1_2		= 3'b011;		
+            POSTDIV2_2		= 3'b010;		
+            PD_2			= 1'b0;			
+            DSMPD_2			= 1'b1;	
+            FOUTPOSTDIVPD_2 = 1'b0;
+            FOUTVCOPD_2     = 1'b0;
+        end
+        default: begin //by pass
+            BYPASS_2 = 1'b1;
+            REFDIV_2		= 6'b000010;		
+		    FBDIV_2			= 12'd20;		
+            POSTDIV1_2		= 3'b001;		
             POSTDIV2_2		= 3'b001;		
             PD_2			= 1'b0;			
             DSMPD_2			= 1'b1;	
             FOUTPOSTDIVPD_2 = 1'b0;
             FOUTVCOPD_2     = 1'b0;
         end
-        default: begin //
-        end
         endcase
     end
-
-        PLLTS28HPMLAINT PLLTS28HPMLAINT_1(.BYPASS(BYPASS_1), .DSMPD(DSMPD_1), .FBDIV(FBDIV_1),
+    PLLTS28HPMLAINT PLLTS28HPMLAINT_1(.BYPASS(BYPASS_1), .DSMPD(DSMPD_1), .FBDIV(FBDIV_1),
         .FOUTPOSTDIVPD(FOUTPOSTDIVPD_1), .FOUTVCOPD(FOUTVCOPD_1), .FREF(FREF), .PD(PD_1), 
         .POSTDIV1(POSTDIV1_1), .POSTDIV2(POSTDIV2_1), .REFDIV(REFDIV_1), .CLKSSCG(CLKSSCG_1),
         .FOUTPOSTDIV(FOUTPOSTDIV_1), .FOUTVCO(FOUTVCO_1), .LOCK(LOCK_1));
-        PLLTS28HPMLAINT PLLTS28HPMLAINT_2(.BYPASS(BYPASS_2), .DSMPD(DSMPD_2), .FBDIV(FBDIV_2),
+     PLLTS28HPMLAINT PLLTS28HPMLAINT_2(.BYPASS(BYPASS_2), .DSMPD(DSMPD_2), .FBDIV(FBDIV_2),
         .FOUTPOSTDIVPD(FOUTPOSTDIVPD_2), .FOUTVCOPD(FOUTVCOPD_2), .FREF(FREF), .PD(PD_2), 
         .POSTDIV1(POSTDIV1_2), .POSTDIV2(POSTDIV2_2), .REFDIV(REFDIV_2), .CLKSSCG(CLKSSCG_2),
         .FOUTPOSTDIV(FOUTPOSTDIV_2), .FOUTVCO(FOUTVCO_2), .LOCK(LOCK_2));
