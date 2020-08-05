@@ -3,7 +3,7 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/spi/rtl/*.v \
              ../dev/uart/rtl/uart_apb.v \
              ../dev/uart/rtl/uart16550/*.v \
-             ../cpu/core.v ../cpu/uncore.v ../cpu/SingleTop.v \
+             ../cpu/core.v ../cpu/uncore.v ../cpu/SingleTop.v ../cpu/simram.v \
              ../top/soc_top.v \
              ../dev/spi/rtl/spi_defines.v \
              ../dev/spi/rtl/spi_clgen.v \
@@ -39,7 +39,7 @@ SIM_OPTIONS  := -full64 -debug_access+nomemcbk+dmptf -debug_region+cell +v2k +sv
                 +define+S50 \
                 +define+RANDOMIZE_REG_INIT \
                 +define+RANDOMIZE_MEM_INIT \
-				+incdir+../amba/rtl \
+                +incdir+../amba/rtl \
                 +incdir+../dev/gpio/rtl \
                 +incdir+../dev/spiFlash/N25Q128A13E_VG12 \
                 +incdir+../dev/spiFlash/N25Q128A13E_VG12/include \

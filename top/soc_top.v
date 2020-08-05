@@ -1,4 +1,4 @@
-`define BACKEND
+//`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -161,6 +161,158 @@ div_2 u0_div2(
 `define TOP SingleTop
 `endif
 
+wire        io_axi4_0_awready;
+wire        io_axi4_0_awvalid;
+wire [3:0]  io_axi4_0_awid;
+wire [30:0] io_axi4_0_awaddr;
+wire [7:0]  io_axi4_0_awlen;
+wire [2:0]  io_axi4_0_awsize;
+wire [1:0]  io_axi4_0_awburst;
+wire        io_axi4_0_wready;
+wire        io_axi4_0_wvalid;
+wire [63:0] io_axi4_0_wdata;
+wire [7:0]  io_axi4_0_wstrb;
+wire        io_axi4_0_wlast;
+wire        io_axi4_0_bready;
+wire        io_axi4_0_bvalid;
+wire [3:0]  io_axi4_0_bid;
+wire [1:0]  io_axi4_0_bresp;
+wire        io_axi4_0_arready;
+wire        io_axi4_0_arvalid;
+wire [3:0]  io_axi4_0_arid;
+wire [30:0] io_axi4_0_araddr;
+wire [7:0]  io_axi4_0_arlen;
+wire [2:0]  io_axi4_0_arsize;
+wire [1:0]  io_axi4_0_arburst;
+wire        io_axi4_0_rready;
+wire        io_axi4_0_rvalid;
+wire [3:0]  io_axi4_0_rid;
+wire [63:0] io_axi4_0_rdata;
+wire [1:0]  io_axi4_0_rresp;
+wire        io_axi4_0_rlast;
+
+wire        mmio_axi4_0_awready;
+wire        mmio_axi4_0_awvalid;
+wire [3:0]  mmio_axi4_0_awid;
+wire [30:0] mmio_axi4_0_awaddr;
+wire [7:0]  mmio_axi4_0_awlen;
+wire [2:0]  mmio_axi4_0_awsize;
+wire [1:0]  mmio_axi4_0_awburst;
+wire        mmio_axi4_0_wready;
+wire        mmio_axi4_0_wvalid;
+wire [63:0] mmio_axi4_0_wdata;
+wire [7:0]  mmio_axi4_0_wstrb;
+wire        mmio_axi4_0_wlast;
+wire        mmio_axi4_0_bready;
+wire        mmio_axi4_0_bvalid;
+wire [3:0]  mmio_axi4_0_bid;
+wire [1:0]  mmio_axi4_0_bresp;
+wire        mmio_axi4_0_arready;
+wire        mmio_axi4_0_arvalid;
+wire [3:0]  mmio_axi4_0_arid;
+wire [30:0] mmio_axi4_0_araddr;
+wire [7:0]  mmio_axi4_0_arlen;
+wire [2:0]  mmio_axi4_0_arsize;
+wire [1:0]  mmio_axi4_0_arburst;
+wire        mmio_axi4_0_rready;
+wire        mmio_axi4_0_rvalid;
+wire [3:0]  mmio_axi4_0_rid;
+wire [63:0] mmio_axi4_0_rdata;
+wire [1:0]  mmio_axi4_0_rresp;
+wire        mmio_axi4_0_rlast;
+
+
+SimAXIMem simmem (
+  .clock(dev_clk),
+  .reset(~rst_n),
+  .io_axi4_0_awready(io_axi4_0_awready),
+  .io_axi4_0_awvalid(io_axi4_0_awvalid),
+  .io_axi4_0_awid(io_axi4_0_awid),
+  .io_axi4_0_awaddr(io_axi4_0_awaddr),
+  .io_axi4_0_awlen(io_axi4_0_awlen),
+  .io_axi4_0_awsize(io_axi4_0_awsize),
+  .io_axi4_0_awburst(io_axi4_0_awburst),
+  .io_axi4_0_wready(io_axi4_0_wready),
+  .io_axi4_0_wvalid(io_axi4_0_wvalid),
+  .io_axi4_0_wdata(io_axi4_0_wdata),
+  .io_axi4_0_wstrb(io_axi4_0_wstrb),
+  .io_axi4_0_wlast(io_axi4_0_wlast),
+  .io_axi4_0_bready(io_axi4_0_bready),
+  .io_axi4_0_bvalid(io_axi4_0_bvalid),
+  .io_axi4_0_bid(io_axi4_0_bid),
+  .io_axi4_0_bresp(io_axi4_0_bresp),
+  .io_axi4_0_arready(io_axi4_0_arready),
+  .io_axi4_0_arvalid(io_axi4_0_arvalid),
+  .io_axi4_0_arid(io_axi4_0_arid),
+  .io_axi4_0_araddr(io_axi4_0_araddr),
+  .io_axi4_0_arlen(io_axi4_0_arlen),
+  .io_axi4_0_arsize(io_axi4_0_arsize),
+  .io_axi4_0_arburst(io_axi4_0_arburst),
+  .io_axi4_0_rready(io_axi4_0_rready),
+  .io_axi4_0_rvalid(io_axi4_0_rvalid),
+  .io_axi4_0_rid(io_axi4_0_rid),
+  .io_axi4_0_rdata(io_axi4_0_rdata),
+  .io_axi4_0_rresp(io_axi4_0_rresp),
+  .io_axi4_0_rlast(io_axi4_0_rlast)
+);
+
+
+integer f;
+initial begin
+  f = $fopen("serial", "w");
+end
+// Sim MMIO
+reg [15:0] rid;
+reg [15:0] bid;
+reg rvalid;
+reg bvalid;
+reg rlen;
+always @(posedge dev_clk) begin
+  if (~rst_n) begin
+    rvalid <= 0;
+    bvalid <= 0;
+    rid <= 0;
+    bid <= 0;
+    rlen <= 0;
+  end
+
+  if (mmio_axi4_0_wvalid)
+    $fwrite(f, "%c", mmio_axi4_0_wdata[7:0]);
+
+  if (mmio_axi4_0_arvalid & mmio_axi4_0_arready) begin
+    rvalid <= 1;
+    rid <= mmio_axi4_0_arid;
+    rlen <= mmio_axi4_0_arlen;
+  end
+  if (mmio_axi4_0_rvalid & mmio_axi4_0_rready)
+    rvalid <= 0;
+
+  if (mmio_axi4_0_wvalid & mmio_axi4_0_wready & mmio_axi4_0_wlast) begin
+    bvalid <= 1;
+    bid <= mmio_axi4_0_awid;
+  end
+  if (mmio_axi4_0_bvalid & mmio_axi4_0_bready) begin
+    if (rlen == 0)
+      bvalid <= 0;
+    else
+      rlen <= rlen - 1;
+  end
+end
+
+assign mmio_axi4_0_awready = 1;
+assign mmio_axi4_0_wready = 1;
+assign mmio_axi4_0_arready = 1;
+assign mmio_axi4_0_rvalid = rvalid;
+assign mmio_axi4_0_bvalid = bvalid;
+
+assign mmio_axi4_0_bid = bid;
+assign mmio_axi4_0_bresp = 0;
+assign mmio_axi4_0_rid = rid;
+assign mmio_axi4_0_rdata = 64'hdeadbeaf12345678;
+assign mmio_axi4_0_rresp = 0;
+assign mmio_axi4_0_rlast = 1;
+
+
 `TOP top (
   .clock(dev_clk),
   .reset(~rst_n),
@@ -183,90 +335,90 @@ div_2 u0_div2(
   // }}}
 `ifndef BACKEND
   // {{{ mem_axi4
-  .mem_axi4_0_awready(1'b0),
-  .mem_axi4_0_awvalid(),
-  .mem_axi4_0_awid(),
-  .mem_axi4_0_awaddr(),
-  .mem_axi4_0_awlen(),
-  .mem_axi4_0_awsize(),
-  .mem_axi4_0_awburst(),
+  .mem_axi4_0_awready(io_axi4_0_awready),
+  .mem_axi4_0_awvalid(io_axi4_0_awvalid),
+  .mem_axi4_0_awid(io_axi4_0_awid),
+  .mem_axi4_0_awaddr(io_axi4_0_awaddr),
+  .mem_axi4_0_awlen(io_axi4_0_awlen),
+  .mem_axi4_0_awsize(io_axi4_0_awsize),
+  .mem_axi4_0_awburst(io_axi4_0_awburst),
   .mem_axi4_0_awlock(),
   .mem_axi4_0_awcache(),
   .mem_axi4_0_awprot(),
   .mem_axi4_0_awqos(),
   .mem_axi4_0_awinstret(),
-  .mem_axi4_0_wready(),
-  .mem_axi4_0_wvalid(),
-  .mem_axi4_0_wdata(),
-  .mem_axi4_0_wstrb(),
-  .mem_axi4_0_wlast(),
-  .mem_axi4_0_bready(),
-  .mem_axi4_0_bvalid(),
-  .mem_axi4_0_bid(),
-  .mem_axi4_0_bresp(),
-  .mem_axi4_0_arready(),
-  .mem_axi4_0_arvalid(),
-  .mem_axi4_0_arid(),
-  .mem_axi4_0_araddr(),
-  .mem_axi4_0_arlen(),
-  .mem_axi4_0_arsize(),
-  .mem_axi4_0_arburst(),
+  .mem_axi4_0_wready(io_axi4_0_wready),
+  .mem_axi4_0_wvalid(io_axi4_0_wvalid),
+  .mem_axi4_0_wdata(io_axi4_0_wdata),
+  .mem_axi4_0_wstrb(io_axi4_0_wstrb),
+  .mem_axi4_0_wlast(io_axi4_0_wlast),
+  .mem_axi4_0_bready(io_axi4_0_bready),
+  .mem_axi4_0_bvalid(io_axi4_0_bvalid),
+  .mem_axi4_0_bid(io_axi4_0_bid),
+  .mem_axi4_0_bresp(io_axi4_0_bresp),
+  .mem_axi4_0_arready(io_axi4_0_arready),
+  .mem_axi4_0_arvalid(io_axi4_0_arvalid),
+  .mem_axi4_0_arid(io_axi4_0_arid),
+  .mem_axi4_0_araddr(io_axi4_0_araddr),
+  .mem_axi4_0_arlen(io_axi4_0_arlen),
+  .mem_axi4_0_arsize(io_axi4_0_arsize),
+  .mem_axi4_0_arburst(io_axi4_0_arburst),
   .mem_axi4_0_arlock(),
   .mem_axi4_0_arcache(),
   .mem_axi4_0_arprot(),
   .mem_axi4_0_arqos(),
   .mem_axi4_0_arinstret(),
-  .mem_axi4_0_rready(),
-  .mem_axi4_0_rvalid(),
-  .mem_axi4_0_rid(),
-  .mem_axi4_0_rdata(),
-  .mem_axi4_0_rresp(),
-  .mem_axi4_0_rlast(),
+  .mem_axi4_0_rready(io_axi4_0_rready),
+  .mem_axi4_0_rvalid(io_axi4_0_rvalid),
+  .mem_axi4_0_rid(io_axi4_0_rid),
+  .mem_axi4_0_rdata(io_axi4_0_rdata),
+  .mem_axi4_0_rresp(io_axi4_0_rresp),
+  .mem_axi4_0_rlast(io_axi4_0_rlast),
   // }}}
   // {{{ mmio_axi4
-  .mmio_axi4_0_awready(1'b0),
-  .mmio_axi4_0_awvalid(),
-  .mmio_axi4_0_awid(),
-  .mmio_axi4_0_awaddr(),
-  .mmio_axi4_0_awlen(),
-  .mmio_axi4_0_awsize(),
-  .mmio_axi4_0_awburst(),
-  .mmio_axi4_0_awlock(),
-  .mmio_axi4_0_awcache(),
-  .mmio_axi4_0_awprot(),
-  .mmio_axi4_0_awqos(),
-  .mmio_axi4_0_awuser(),
-  .mmio_axi4_0_awinstret(),
-  .mmio_axi4_0_wready(1'b0),
-  .mmio_axi4_0_wvalid(),
-  .mmio_axi4_0_wdata(),
-  .mmio_axi4_0_wstrb(),
-  .mmio_axi4_0_wlast(),
-  .mmio_axi4_0_bready(),
-  .mmio_axi4_0_bvalid(1'b0),
-  .mmio_axi4_0_bid(),
-  .mmio_axi4_0_bresp(),
-  .mmio_axi4_0_buser(),
-  .mmio_axi4_0_arready(1'b0),
-  .mmio_axi4_0_arvalid(),
-  .mmio_axi4_0_arid(),
-  .mmio_axi4_0_araddr(),
-  .mmio_axi4_0_arlen(),
-  .mmio_axi4_0_arsize(),
-  .mmio_axi4_0_arburst(),
-  .mmio_axi4_0_arlock(),
-  .mmio_axi4_0_arcache(),
-  .mmio_axi4_0_arprot(),
-  .mmio_axi4_0_arqos(),
-  .mmio_axi4_0_aruser(),
-  .mmio_axi4_0_arinstret(),
-  .mmio_axi4_0_rready(),
-  .mmio_axi4_0_rvalid(1'b0),
-  .mmio_axi4_0_rid(),
-  .mmio_axi4_0_rdata(),
-  .mmio_axi4_0_rresp(),
-  .mmio_axi4_0_ruser(),
-  .mmio_axi4_0_rlast(),
+  .mmio_axi4_0_awready(mmio_axi4_0_awready),
+  .mmio_axi4_0_awvalid(mmio_axi4_0_awvalid),
+  .mmio_axi4_0_awid(mmio_axi4_0_awid),
+  .mmio_axi4_0_awaddr(mmio_axi4_0_awaddr),
+  .mmio_axi4_0_awlen(mmio_axi4_0_awlen),
+  .mmio_axi4_0_awsize(mmio_axi4_0_awsize),
+  .mmio_axi4_0_awburst(mmio_axi4_0_awburst),
+  .mmio_axi4_0_awlock(mmio_axi4_0_awlock),
+  .mmio_axi4_0_awcache(mmio_axi4_0_awcache),
+  .mmio_axi4_0_awprot(mmio_axi4_0_awprot),
+  .mmio_axi4_0_awqos(mmio_axi4_0_awqos),
+  .mmio_axi4_0_awuser(mmio_axi4_0_awuser),
+  .mmio_axi4_0_awinstret(mmio_axi4_0_awinstret),
+  .mmio_axi4_0_wready(mmio_axi4_0_wready),
+  .mmio_axi4_0_wvalid(mmio_axi4_0_wvalid),
+  .mmio_axi4_0_wdata(mmio_axi4_0_wdata),
+  .mmio_axi4_0_wstrb(mmio_axi4_0_wstrb),
+  .mmio_axi4_0_wlast(mmio_axi4_0_wlast),
+  .mmio_axi4_0_bready(mmio_axi4_0_bready),
+  .mmio_axi4_0_bvalid(mmio_axi4_0_bvalid),
+  .mmio_axi4_0_bid(mmio_axi4_0_bid),
+  .mmio_axi4_0_bresp(mmio_axi4_0_bresp),
+  .mmio_axi4_0_buser(mmio_axi4_0_buser),
+  .mmio_axi4_0_arready(mmio_axi4_0_arready),
+  .mmio_axi4_0_arvalid(mmio_axi4_0_arvalid),
+  .mmio_axi4_0_arid(mmio_axi4_0_arid),
+  .mmio_axi4_0_araddr(mmio_axi4_0_araddr),
+  .mmio_axi4_0_arlen(mmio_axi4_0_arlen),
+  .mmio_axi4_0_arsize(mmio_axi4_0_arsize),
+  .mmio_axi4_0_arburst(mmio_axi4_0_arburst),
+  .mmio_axi4_0_arlock(mmio_axi4_0_arlock),
+  .mmio_axi4_0_arcache(mmio_axi4_0_arcache),
+  .mmio_axi4_0_arprot(mmio_axi4_0_arprot),
+  .mmio_axi4_0_arqos(mmio_axi4_0_arqos),
+  .mmio_axi4_0_aruser(mmio_axi4_0_aruser),
+  .mmio_axi4_0_arinstret(mmio_axi4_0_arinstret),
+  .mmio_axi4_0_rready(mmio_axi4_0_rready),
+  .mmio_axi4_0_rvalid(mmio_axi4_0_rvalid),
+  .mmio_axi4_0_rid(mmio_axi4_0_rid),
+  .mmio_axi4_0_rdata(mmio_axi4_0_rdata),
+  .mmio_axi4_0_rresp(mmio_axi4_0_rresp),
+  .mmio_axi4_0_ruser(mmio_axi4_0_ruser),
+  .mmio_axi4_0_rlast(mmio_axi4_0_rlast),
   // }}}
   // {{{ l2_frontend_bus_axi4
   .l2_frontend_bus_axi4_0_awready(),
