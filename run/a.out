@@ -1,0 +1,1604 @@
+vcs -full64  +v2k +sv -timescale=1ns/10ps -sverilog +vcd+vcdpluson +notimingcheck +vcs+flush+all +lint=TFIPC-L +define+S50 +define+RANDOMIZE_REG_INIT +define+RANDOMIZE_MEM_INIT +incdir+../amba/rtl +incdir+../dev/gpio/rtl +incdir+../dev/spiFlash/N25Q128A13E_VG12 +incdir+../dev/spiFlash/N25Q128A13E_VG12/include +incdir+../dev/uart/rtl +incdir+../dev/spi/rtl +incdir+../top +incdir+../dev/spiFlash/N25Q128A13E_VG12 +incdir+../dev/spiFlash/N25Q128A13E_VG12/include  ../tb/*.v ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v  ../amba/rtl/*.v ../dev/gpio/rtl/*.v ../dev/spi/rtl/*.v ../dev/uart/rtl/uart_apb.v ../dev/uart/rtl/uart16550/*.v ../cpu/core.v ../cpu/simram.v ../cpu/SingleTop.v ../cpu/uncore.v ../top/asic_top.v ../top/soc_top.v ../lib/*.v ../lib/mem/*.v ../lib/pll/*.v -top asic_top
+                         Chronologic VCS (TM)
+       Version O-2018.09-SP2_Full64 -- Wed Aug  5 22:09:38 2020
+               Copyright (c) 1991-2018 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+
+Warning-[UNK_COMP_ARG] Unknown compile time plus argument used
+  Unknown compile time plus argument 'sv' is ignored.
+
+ + use `+plusarg_save' to bind in runtime plusargs;
+ + use `+plusarg_ignore' to suppress this message.
+
+Warning-[UNK_COMP_ARG] Unknown compile time plus argument used
+  Unknown compile time plus argument 'vcd+vcdpluson' is ignored.
+
+Parsing design file '../tb/soc_system.v'
+Parsing included file '../top/global_define.v'.
+Back to file '../tb/soc_system.v'.
+Parsing design file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/Decoders.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/Decoders.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/PLRSDetectors.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+
+Warning-[TMR] Text macro redefined
+../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v, 9100
+  Text macro (OTP_lockBit) is redefined. The last definition will override 
+  previous ones.
+  Location of previous definition: 
+  ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v, 5570.
+  Previous value: N25Qxxx.OTP.mem[OTP_dim-1][0]
+
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/UserData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Parsing included file '../dev/spiFlash/N25Q128A13E_VG12/include/TimingData.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/include/DevParam.h'.
+Back to file '../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v'.
+Parsing design file '../amba/rtl/amba_define.v'
+Parsing design file '../amba/rtl/apb_afifo.v'
+Parsing included file '../amba/rtl/amba_define.v'.
+Back to file '../amba/rtl/apb_afifo.v'.
+Parsing design file '../amba/rtl/apb_demux.v'
+Parsing included file '../amba/rtl/amba_define.v'.
+Back to file '../amba/rtl/apb_demux.v'.
+Parsing design file '../amba/rtl/apb_mux.v'
+Parsing included file '../amba/rtl/amba_define.v'.
+Back to file '../amba/rtl/apb_mux.v'.
+Parsing design file '../amba/rtl/async_fifo_org.v'
+Parsing design file '../amba/rtl/async_fifo.v'
+Parsing design file '../dev/gpio/rtl/gpio_apb.v'
+Parsing included file '../dev/gpio/rtl/gpio_defines.v'.
+Back to file '../dev/gpio/rtl/gpio_apb.v'.
+Parsing design file '../dev/gpio/rtl/gpio_defines.v'
+Parsing design file '../dev/gpio/rtl/gpio_top.v'
+Parsing included file '../dev/gpio/rtl/gpio_defines.v'.
+Back to file '../dev/gpio/rtl/gpio_top.v'.
+Parsing design file '../dev/spi/rtl/spi_clgen.v'
+Parsing included file '../dev/spi/rtl/spi_defines.v'.
+Back to file '../dev/spi/rtl/spi_clgen.v'.
+Parsing design file '../dev/spi/rtl/spi_defines.v'
+Parsing design file '../dev/spi/rtl/spi_flash.v'
+Parsing included file '../amba/rtl/amba_define.v'.
+Back to file '../dev/spi/rtl/spi_flash.v'.
+Parsing design file '../dev/spi/rtl/spi_shift.v'
+Parsing design file '../dev/spi/rtl/spi_top.v'
+Parsing design file '../dev/uart/rtl/uart_apb.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_sync_flops.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Back to file '../dev/uart/rtl/uart_apb.v'.
+Parsing design file '../dev/uart/rtl/uart16550/raminfr.v'
+Parsing design file '../dev/uart/rtl/uart16550/timescale.v'
+Parsing design file '../dev/uart/rtl/uart16550/uart_defines.v'
+Parsing design file '../dev/uart/rtl/uart16550/uart_receiver.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_rfifo.v, 154
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_rfifo.v", 154
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_receiver.v, 202
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_receiver.v", 202
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../dev/uart/rtl/uart16550/uart_regs.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_tfifo.v, 148
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_tfifo.v", 148
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_transmitter.v, 158
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_transmitter.v", 158
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_rfifo.v, 154
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_rfifo.v", 154
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_receiver.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_receiver.v, 202
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_receiver.v", 202
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_sync_flops.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_sync_flops.v, 73
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_sync_flops.v", 73
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_regs.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_regs.v, 238
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_regs.v", 238
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../dev/uart/rtl/uart16550/uart_rfifo.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_rfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_rfifo.v, 154
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_rfifo.v", 154
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../dev/uart/rtl/uart16550/uart_sync_flops.v'
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_sync_flops.v, 73
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_sync_flops.v", 73
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../dev/uart/rtl/uart16550/uart_tfifo.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_tfifo.v, 148
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_tfifo.v", 148
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../dev/uart/rtl/uart16550/uart_transmitter.v'
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/uart_defines.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+Parsing included file '../dev/uart/rtl/uart16550/raminfr.v'.
+Back to file '../dev/uart/rtl/uart16550/uart_tfifo.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_tfifo.v, 148
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_tfifo.v", 148
+  This module will be overridden by the last declaration.
+  
+
+Back to file '../dev/uart/rtl/uart16550/uart_transmitter.v'.
+
+Warning-[OPD] Override previous declaration
+../dev/uart/rtl/uart16550/uart_transmitter.v, 158
+  Previously declared at:"../dev/uart/rtl/uart16550/uart_transmitter.v", 158
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../cpu/core.v'
+Parsing design file '../cpu/simram.v'
+Parsing design file '../cpu/SingleTop.v'
+Parsing design file '../cpu/uncore.v'
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 5
+  Previously declared at:"../cpu/core.v", 5
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 5050
+  Previously declared at:"../cpu/core.v", 54886
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 5093
+  Previously declared at:"../cpu/core.v", 2088
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 5118
+  Previously declared at:"../cpu/core.v", 2113
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 5980
+  Previously declared at:"../cpu/core.v", 2154
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6004
+  Previously declared at:"../cpu/core.v", 2178
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6060
+  Previously declared at:"../cpu/core.v", 2234
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6132
+  Previously declared at:"../cpu/core.v", 2306
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6244
+  Previously declared at:"../cpu/core.v", 2362
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6265
+  Previously declared at:"../cpu/core.v", 2383
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 6286
+  Previously declared at:"../cpu/core.v", 2404
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 61717
+  Previously declared at:"../cpu/core.v", 54870
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 63070
+  Previously declared at:"../cpu/simram.v", 1946
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../cpu/uncore.v, 63954
+  Previously declared at:"../cpu/simram.v", 2103
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../top/asic_top.v'
+Parsing design file '../top/soc_top.v'
+Parsing included file '../top/global_define.v'.
+Back to file '../top/soc_top.v'.
+Parsing included file '../amba/rtl/amba_define.v'.
+Back to file '../top/soc_top.v'.
+Parsing design file '../lib/dwc_d4mv_io.v'
+Parsing design file '../lib/tphn28hpcpgv18_pwr.v'
+Parsing design file '../lib/tphn28hpcpgv18.v'
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 25
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 25
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 33
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 33
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 41
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 41
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 49
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 49
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 56
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 83
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 63
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 117
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 70
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 151
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 77
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 185
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 114
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 252
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 151
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 319
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 188
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 386
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 225
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 453
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 262
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 520
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 299
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 587
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 336
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 654
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 373
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 721
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 410
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 788
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 447
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 855
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 484
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 922
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 521
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 989
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 558
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1056
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 595
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1123
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 632
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1190
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 669
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1257
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 706
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1324
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 743
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1391
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 780
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1458
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 817
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1525
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 854
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1592
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 891
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1659
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 928
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1726
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 965
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1793
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1002
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1860
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1039
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1927
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1076
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 1994
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1113
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2061
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1150
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2128
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1187
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2195
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1224
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2262
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1261
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2329
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1290
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2366
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1319
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2403
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1324
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2409
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1329
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2415
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1334
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2421
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1339
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2427
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1376
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2494
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1413
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2561
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1450
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2628
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1487
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2695
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1524
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2762
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1561
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2829
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1598
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2896
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1635
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 2963
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1672
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3030
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1709
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3097
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1746
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3164
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1783
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3231
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1820
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3298
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1857
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3365
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1894
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3432
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1931
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3499
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 1968
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3566
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2005
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3633
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2042
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3700
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2079
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3767
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2116
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3834
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2153
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3901
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2190
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 3968
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2227
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4035
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2234
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4069
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2241
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4103
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2248
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4137
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2255
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4171
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2262
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4207
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2269
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4243
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2276
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4277
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2283
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4311
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2290
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4347
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2297
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4383
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2304
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4417
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2311
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4451
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2318
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4486
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2325
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4521
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2332
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4555
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2339
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4589
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2346
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4623
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2353
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4657
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2360
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4691
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2367
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4725
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2374
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4759
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2381
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4793
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2389
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4829
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2397
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4865
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2404
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4899
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2411
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4933
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2418
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4964
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2425
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 4995
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2432
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5026
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2439
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5057
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2447
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5093
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2455
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5129
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2462
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5163
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2469
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5197
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2476
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5231
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2483
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5265
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2490
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5299
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2497
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5333
+  This module will be overridden by the last declaration.
+  
+
+
+Warning-[OPD] Override previous declaration
+../lib/tphn28hpcpgv18.v, 2504
+  Previously declared at:"../lib/tphn28hpcpgv18_pwr.v", 5360
+  This module will be overridden by the last declaration.
+  
+
+Parsing design file '../lib/mem/ts1n28hpcplvtb2048x48m8sw_180a_ffg0p99v0c.v'
+Parsing design file '../lib/mem/ts1n28hpcplvtb512x64m4sw_180a_ffg0p99v0c.v'
+Parsing design file '../lib/mem/ts1n28hpcplvtb8192x64m8sw_180a_ffg0p99v0c.v'
+Parsing design file '../lib/mem/ts5n28hpcplvta64x100m2fw_130a_ffg0p99v0c.v'
+Parsing design file '../lib/mem/ts5n28hpcplvta64x96m2fw_130a_ffg0p99v0c.v'
+Parsing design file '../lib/mem/ts6n28hpcplvta2048x32m8sw_130a_ffg0p99v0c_pwr.v'
+Parsing design file '../lib/pll/PLLCORELAINT.v'
+Parsing design file '../lib/pll/PLLTS28HPMLAINT.v'
+Top Level Modules:
+       asic_top
+TimeScale is 1 ps / 1 fs
+
+Lint-[TFIPC-L] Too few instance port connections
+../top/soc_top.v, 316
+soc_top, "DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The above instance has fewer port connections than the module definition,
+  output port 'mmio_apb_0_pprot' is not connected.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../top/soc_top.v, 401
+  Implicit wire 'mmio_axi4_0_buser' does not have any driver, please make sure
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../top/soc_top.v, 420
+  Implicit wire 'mmio_axi4_0_ruser' does not have any driver, please make sure
+  this is intended.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 31-bit expression is connected to 35-bit port 
+  "mem_axi4_0_awaddr" of module "DualTop", instance "top".
+  Expression: io_axi4_0_awaddr
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 31-bit expression is connected to 35-bit port 
+  "mem_axi4_0_araddr" of module "DualTop", instance "top".
+  Expression: io_axi4_0_araddr
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 4-bit expression is connected to 1-bit port "mmio_axi4_0_awid"
+  of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awid
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 4-bit port 
+  "mmio_axi4_0_awcache" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awcache
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 3-bit port 
+  "mmio_axi4_0_awprot" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awprot
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 4-bit port 
+  "mmio_axi4_0_awqos" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awqos
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 16-bit port 
+  "mmio_axi4_0_awuser" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awuser
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 64-bit port 
+  "mmio_axi4_0_awinstret" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_awinstret
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 4-bit expression is connected to 1-bit port "mmio_axi4_0_bid" 
+  of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_bid
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 16-bit port 
+  "mmio_axi4_0_buser" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_buser
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 4-bit expression is connected to 1-bit port "mmio_axi4_0_arid"
+  of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_arid
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 4-bit port 
+  "mmio_axi4_0_arcache" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_arcache
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 3-bit port 
+  "mmio_axi4_0_arprot" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_arprot
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 4-bit port 
+  "mmio_axi4_0_arqos" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_arqos
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 16-bit port 
+  "mmio_axi4_0_aruser" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_aruser
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 64-bit port 
+  "mmio_axi4_0_arinstret" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_arinstret
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 4-bit expression is connected to 1-bit port "mmio_axi4_0_rid" 
+  of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_rid
+  	use +lint=PCWM for more details
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../top/soc_top.v, 316
+"DualTop top( .clock (dev_clk),  .reset ((~rst_n)),  .coreclk (core_clk),  .corerst ((~rst_n)),  .interrupts (7'b0),  .reset_to_hang_en (1'b0),  .mem_part_en (1'b0),  .distinct_hart_dsid_en (1'b0),  .debug_systemjtag_reset ((~rst_n)),  .mem_axi4_0_awready (io_axi4_0_awready),  .mem_axi4_0_awvalid (io_axi4_0_awvalid),  .mem_axi4_0_awid (io_axi4_0_awid),  .mem_axi4_0_awaddr (io_axi4_0_awaddr),  .mem_axi4_0_awlen (io_axi4_0_awlen),  .mem_axi4_0_awsize (io_axi4_0_awsize),  .mem_axi4_0_awburst (io_axi4_0_awburst),  .mem_axi4_0_wready (io_axi4_0_wready),  .mem_axi4_0_wvalid (io_axi4_0_wvalid),  .mem_axi4_0_wdata (io_axi4_0_wdata),  .mem_axi4_0_wstrb (io_axi4_0_wstrb),  .mem_axi4_0_wlast (io_axi4_0_wlast),  .mem_axi4_0_bready (io_axi4_0_bready),  .mem_axi4_0_bv ... "
+  The following 1-bit expression is connected to 16-bit port 
+  "mmio_axi4_0_ruser" of module "DualTop", instance "top".
+  Expression: mmio_axi4_0_ruser
+  	use +lint=PCWM for more details
+
+Starting vcs inline pass...
+Notice: Ports coerced to inout, use -notice for details
+164 modules and 0 UDP read.
+recompiling module apb_afifo
+recompiling module apb_demux
+recompiling module gpio_apb
+recompiling module spi_flash
+recompiling module uart_apb
+recompiling module ALU
+recompiling module AMOALU
+recompiling module BreakpointUnit
+recompiling module BTB
+recompiling module CSRFile
+recompiling module DCache
+recompiling module DCacheDataArray
+recompiling module DCacheModuleanon2
+recompiling module DCacheModuleanon3
+recompiling module Frontend
+recompiling module HellaCacheArbiter
+recompiling module IBuf
+recompiling module ICache
+recompiling module IntSyncCrossingSink
+recompiling module IntSyncCrossingSink_1
+recompiling module IntXbar_4
+recompiling module L1_DCache_tag_array
+recompiling module MulDiv
+recompiling module packageanon2
+recompiling module PlusArgTimeout
+recompiling module PMPChecker
+recompiling module PMPChecker_1
+recompiling module Rocket
+recompiling module RocketTile
+recompiling module ShiftQueue_11
+recompiling module TLAsyncCrossingSource_9
+recompiling module TLB
+recompiling module TLXbar_10
+recompiling module Queue_162
+recompiling module Queue_167
+recompiling module SimAXIMem
+recompiling module AsyncQueue
+recompiling module AsyncQueueSink
+recompiling module AsyncQueueSink_5
+recompiling module AsyncQueueSink_33
+recompiling module AsyncQueueSource
+recompiling module AsyncQueueSource_5
+recompiling module AsyncResetReg
+recompiling module AsyncResetRegVec_w1_i0
+recompiling module AsyncResetRegVec_w2_i0
+recompiling module AsyncResetRegVec_w4_i0
+recompiling module AsyncResetRegVec_w32_i0
+recompiling module AsyncResetSynchronizerShiftReg_w1_d3_i0
+recompiling module AsyncResetSynchronizerShiftReg_w2_d3_i0
+recompiling module AsyncResetSynchronizerShiftReg_w4_d3_i0
+50 of 164 modules done
+recompiling module AsyncValidSync
+recompiling module AXI4Buffer
+recompiling module AXI4Deinterleaver
+recompiling module AXI4Fragmenter
+recompiling module AXI4IdIndexer_1
+recompiling module AXI4IdIndexer_2
+recompiling module AXI4ToTL
+recompiling module AXI4UserYanker_1
+recompiling module AXI4UserYanker_2
+recompiling module CAM
+recompiling module CAM_9
+recompiling module ChipLink
+recompiling module ChipLink_1
+recompiling module CLINT
+recompiling module ControlPlane
+recompiling module DebugTransportModuleJTAG
+recompiling module FrontBus
+recompiling module HellaQueue
+recompiling module IntSyncCrossingSource_2
+recompiling module IntSyncCrossingSource_3
+recompiling module IntXbar
+recompiling module IntXing
+recompiling module L2_data_array
+recompiling module L2_meta_array
+recompiling module LevelGateway
+recompiling module LvNAFPGATop
+recompiling module MemoryBus
+recompiling module PeripheryBus_1
+recompiling module PLICFanIn
+recompiling module Queue_14
+recompiling module Queue_21
+recompiling module Queue_46
+recompiling module Queue_48
+recompiling module Queue_49
+recompiling module Queue_53
+recompiling module Queue_60
+recompiling module Queue_64
+recompiling module Queue_74
+recompiling module Queue_96
+recompiling module ResetCatchAndSync_d3
+recompiling module RX
+recompiling module SBToTL
+recompiling module ShiftQueue
+recompiling module SimpleLazyModule
+recompiling module SimpleLazyModule_9
+recompiling module SimpleLazyModule_10
+recompiling module SimpleLazyModule_11
+recompiling module SimpleLazyModule_13
+recompiling module SimpleLazyModule_17
+recompiling module SimpleLazyModule_18
+100 of 164 modules done
+recompiling module SimpleLazyModule_19
+recompiling module SimpleLazyModule_20
+recompiling module SimpleLazyModule_30
+recompiling module SinkA
+recompiling module SinkA_1
+recompiling module SinkB_1
+recompiling module SinkC
+recompiling module SinkC_1
+recompiling module SinkD
+recompiling module SinkD_1
+recompiling module SinkE
+recompiling module SourceC
+recompiling module SourceC_1
+recompiling module SourceD
+recompiling module SourceD_1
+recompiling module SourceE
+recompiling module TLAsyncCrossingSink_8
+recompiling module TLAtomicAutomata
+recompiling module TLAtomicAutomata_3
+recompiling module TLBroadcast
+recompiling module TLBuffer
+recompiling module TLBuffer_28
+recompiling module TLBuffer_29
+recompiling module TLDebugModule
+recompiling module TLDebugModuleOuterAsync
+recompiling module TLError
+recompiling module TLError_2
+recompiling module TLFIFOFixer
+recompiling module TLFIFOFixer_1
+recompiling module TLFIFOFixer_14
+recompiling module TLFIFOFixer_15
+recompiling module TLFIFOFixer_16
+recompiling module TLFilter
+recompiling module TLFilter_1
+recompiling module TLHintHandler
+recompiling module TLHintHandler_1
+recompiling module TLPLIC
+recompiling module TLSimpleL2Cache
+recompiling module TLSourceShrinker_1
+recompiling module TLToAXI4
+recompiling module TLToAXI4_1
+recompiling module TLWidthWidget
+recompiling module TLWidthWidget_1
+recompiling module TLWidthWidget_2
+recompiling module TLWidthWidget_25
+recompiling module TLWidthWidget_27
+recompiling module TLXbar
+recompiling module TLXbar_1
+recompiling module TLXbar_6
+recompiling module TLXbar_26
+150 of 164 modules done
+recompiling module TLXbar_27
+recompiling module TokenBucketNode
+recompiling module TX
+recompiling module asic_top
+recompiling module div_2
+recompiling module PDDW04DGZ_H_G
+recompiling module PDXOEDG_H_G
+recompiling module TS1N28HPCPLVTB2048X48M8SW
+recompiling module TS1N28HPCPLVTB512X64M4SW
+recompiling module TS1N28HPCPLVTB8192X64M8SW
+recompiling module TS5N28HPCPLVTA64X100M2FW
+recompiling module TS5N28HPCPLVTA64X96M2FW
+recompiling module TS6N28HPCPLVTA2048X32M8SW
+recompiling module PLLTS28HPMLAINT
+All of 164 modules done
+make[1]: Entering directory `/proj/beihai/liutong/beihai/run/csrc'
+make[1]: Leaving directory `/proj/beihai/liutong/beihai/run/csrc'
+make[1]: Entering directory `/proj/beihai/liutong/beihai/run/csrc'
+rm -f _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv    -Wl,-rpath-link=./ -Wl,-rpath='$ORIGIN'/simv.daidir/ -Wl,-rpath=./simv.daidir/ -Wl,-rpath='$ORIGIN'/simv.daidir//scsim.db.dir  -rdynamic  -Wl,-rpath=/eda/tools/snps/vcs-mx/O-2018.09-SP2/linux64/lib -L/eda/tools/snps/vcs-mx/O-2018.09-SP2/linux64/lib   objs/amcQw_d.o   _81235_archive_1.so  SIM_l.o       rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o          -lzerosoft_rt_stubs -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /eda/tools/snps/vcs-mx/O-2018.09-SP2/linux64/lib/vcs_tls.o   -Wl,-whole-archive -lvcsucli -Wl,-no-whole-archive          /eda/tools/snps/vcs-mx/O-2018.09-SP2/linux64/lib/vcs_save_restore_new.o -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory `/proj/beihai/liutong/beihai/run/csrc'
+CPU time: 15.825 seconds to compile + .810 seconds to elab + .335 seconds to link

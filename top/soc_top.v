@@ -1,4 +1,4 @@
-//`define BACKEND
+`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -622,9 +622,9 @@ wire [31:0] gpio_input;
 wire [31:0] gpio_output;
 wire [31:0] gpio_outen;
 
-//assign gpio_input[3:0] = gpio_i;
-//assign gpio_o = gpio_output[3:0];
-//assign gpio_oe = gpio_outen[3:0];
+assign gpio_input[`GPIO_W - 1 : 0] = gpio_i;
+assign gpio_o = gpio_output[`GPIO_W - 1 : 0];
+assign gpio_oe = gpio_outen[`GPIO_W - 1 : 0];
 
 //gpio input as interrupt source input
 assign gpio_input[6] = irq_uart;
