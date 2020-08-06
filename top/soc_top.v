@@ -161,6 +161,7 @@ div_2 u0_div2(
 `define TOP SingleTop
 `endif
 
+`ifndef BACKEND
 wire        io_axi4_0_awready;
 wire        io_axi4_0_awvalid;
 wire [3:0]  io_axi4_0_awid;
@@ -311,6 +312,7 @@ assign mmio_axi4_0_rid = rid;
 assign mmio_axi4_0_rdata = 64'hdeadbeaf12345678;
 assign mmio_axi4_0_rresp = 0;
 assign mmio_axi4_0_rlast = 1;
+`endif
 
 
 `TOP top (
@@ -323,15 +325,15 @@ assign mmio_axi4_0_rlast = 1;
   .mem_part_en(1'b0),
   .distinct_hart_dsid_en(1'b0),
   // {{{ debug
-  .debug_systemjtag_jtag_TCK(),
-  .debug_systemjtag_jtag_TMS(),
-  .debug_systemjtag_jtag_TDI(),
+  .debug_systemjtag_jtag_TCK(1'b0),
+  .debug_systemjtag_jtag_TMS(1'b0),
+  .debug_systemjtag_jtag_TDI(1'b0),
   .debug_systemjtag_jtag_TDO_data(),
-  .debug_systemjtag_jtag_TDO_driven(),
+  .debug_systemjtag_jtag_TDO_driven(),  // no need
   .debug_systemjtag_reset(~rst_n),
-  .debug_systemjtag_mfr_id(),
-  .debug_ndreset(),
-  .debug_dmactive(),
+  .debug_systemjtag_mfr_id(11'd0),  // no need
+  .debug_ndreset(),  // no need
+  .debug_dmactive(), // no need
   // }}}
 `ifndef BACKEND
   // {{{ mem_axi4
