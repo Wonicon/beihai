@@ -71,7 +71,7 @@ initial begin
 end
 
 always begin
-  #10.000 clk <= ~clk; 
+  #5.000 clk <= ~clk; 
 end
 
 always begin

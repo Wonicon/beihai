@@ -395,7 +395,7 @@ PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT31(.C(),.PAD(CHIPLINK_TX_DAT31),.I(chiplink_tx_d
 endmodule
 
 
-`define RST_CNT_END 20'h1ffff
+`define RST_CNT_END 12'h1ff
 module crg(
     sys_clk,
     sys_rst,
@@ -456,7 +456,7 @@ module crg(
     //pll_lock
     assign pll_lock_1 = LOCK_1;
     assign pll_lock_2 = LOCK_2;
-    reg   [19:0]    rst_cnt;
+    reg   [11:0]    rst_cnt;
     
     assign FREF   =   sys_clk;
   
@@ -468,9 +468,9 @@ module crg(
     
     always@(posedge sys_clk) begin
         if(!sys_rst)
-            rst_cnt <= 20'h0;
+            rst_cnt <= 12'h0;
         else if(rst_cnt < `RST_CNT_END)
-            rst_cnt <= rst_cnt + 20'h1;
+            rst_cnt <= rst_cnt + 12'h1;
     end
 
     assign rst_gen = rst_cnt == `RST_CNT_END;

@@ -9,6 +9,7 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../cpu/uncore.v \
              ../top/asic_top.v \
              ../top/soc_top.v \
+             ../tb/asic_system.v \
              ../lib/*.v \
              ../lib/mem/*.v \
              ../lib/pll/*.v
@@ -19,7 +20,7 @@ TB_FLIST :=   ../tb/*.v \
 
 NOVAS        := /opt/eda/Synopsys/Verdi2015/share/PLI/VCS/LINUX64
 SIM_TOOL     := vcs
-SIM_OPTIONS  := -full64  +v2k +sv -timescale=1ns/10ps \
+SIM_OPTIONS  := -full64 -debug_access+nomemcbk+dmptf -debug_region+cell +v2k +sv -timescale=1ns/10ps \
                 -sverilog \
                 +vcd+vcdpluson \
                 +notimingcheck \
@@ -40,7 +41,7 @@ SIM_OPTIONS  := -full64  +v2k +sv -timescale=1ns/10ps \
 
 
 simv : ${TB_FLIST} ${RTL_FLIST}
-	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top asic_top
+	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top asic_system
 
 all: simv 
 

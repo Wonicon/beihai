@@ -35,7 +35,7 @@ SIM_OPTIONS  := -full64 +v2k +sv -timescale=1ns/10ps \
                 +incdir+../dev/spiFlash/N25Q128A13E_VG12/include \
                 
 simv : ${TB_FLIST} ${RTL_FLIST}
-	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top soc_system
+	${SIM_TOOL} ${SIM_OPTIONS} ${TB_FLIST} ${RTL_FLIST} -top asic_top
 
 all: simv 
 
