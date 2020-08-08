@@ -236,9 +236,9 @@ wire     [5:0]       pll_cfg;
 
 
 
-wire        clk_core;
+wire        clk_cpucore;
 wire        rst_core;
-wire        clk_chiplink;
+wire        clk_cpudev;
 wire        rst_chiplink;
 wire        clk_apb_in;
 
@@ -247,9 +247,9 @@ crg u0_crg(
     .sys_clk(clk),
     .sys_rst(rst_n),
     .pll_cfg(pll_cfg),
-    .clk_core(clk_core),
+    .clk_cpucore(clk_core),
     .rst_core(rst_core),
-    .clk_chiplink(clk_chiplink),
+    .clk_cpudev(clk_chiplink),
     .rst_chiplink(rst_chiplink),
     .clk_apb_in(clk_apb_in),
     .pll_lock_1(),
@@ -259,7 +259,7 @@ crg u0_crg(
 
 soc_top u0_soc_top(
 //cpu clock in
-.clk(clk_core),
+.clk(clk_cpucore),
 .rst_n(rst_core),
 
 //apb clk
@@ -270,9 +270,10 @@ soc_top u0_soc_top(
 .spi_mosi(spi_mosi),
 .spi_miso(spi_miso),
 
+.dev_clk(clk_cpudev),
 //chiplink
-//.chiplink_rx_clk(chiplink_rx_clk),
-.chiplink_rx_clk(clk_chiplink),
+.chiplink_rx_clk(chiplink_rx_clk),
+//.chiplink_rx_clk(clk_chiplink),
 .chiplink_rx_rst(chiplink_rx_rst),
 .chiplink_rx_send(chiplink_rx_send),
 .chiplink_rx_data(chiplink_rx_data),
@@ -395,14 +396,14 @@ PDDW04DGZ_H_G u0_CHIPLINK_TX_DAT31(.C(),.PAD(CHIPLINK_TX_DAT31),.I(chiplink_tx_d
 endmodule
 
 
-`define RST_CNT_END 12'h1ff
+`define RST_CNT_END 20'h1ffff
 module crg(
     sys_clk,
     sys_rst,
     pll_cfg,
-    clk_core,
+    clk_cpucore,
     rst_core,
-    clk_chiplink,
+    clk_cpudev,
     rst_chiplink,
     clk_apb_in,
     pll_lock_1,
@@ -412,9 +413,9 @@ module crg(
     input       sys_clk;
     input       sys_rst;
     input [5:0] pll_cfg;
-    output      clk_core;
+    output      clk_cpucore;
     output      rst_core;
-    output      clk_chiplink;
+    output      clk_cpudev;
     output      rst_chiplink;
     output      clk_apb_in;
     output      pll_lock_1;
@@ -456,21 +457,37 @@ module crg(
     //pll_lock
     assign pll_lock_1 = LOCK_1;
     assign pll_lock_2 = LOCK_2;
-    reg   [11:0]    rst_cnt;
+    reg   [19:0]    rst_cnt;
     
     assign FREF   =   sys_clk;
   
     assign clk_apb_in   =   sys_clk;
-    assign clk_core =   FOUTPOSTDIV_1;
-    assign clk_chiplink =   FOUTPOSTDIV_2;
+    assign clk_cpucore =   FOUTPOSTDIV_1;
+    assign clk_cpudev =   FOUTPOSTDIV_2;
     assign rst_core = rst_gen;
     assign rst_chiplink = rst_gen;
     
-    always@(posedge sys_clk) begin
-        if(!sys_rst)
-            rst_cnt <= 12'h0;
+    //async_rst in and sync_rst out
+    reg rst_s1,rst_s2;
+    reg rst_sync_n;
+    always @ (posedge sys_clk or negedge sys_rst)begin
+        if(!sys_rst)begin
+            rst_s1 <= 1'b0;
+            rst_s2 <= 1'b0;
+            rst_sync_n <= 1'b0;
+        end
+        else begin
+            rst_s1 <= 1'b1;
+            rst_s2 <= rst_s1;
+            rst_sync_n <= rst_s2;
+        end
+    end
+
+    always@(posedge sys_clk or negedge rst_sync_n ) begin
+        if(!rst_sync_n)
+            rst_cnt <= 20'h0;
         else if(rst_cnt < `RST_CNT_END)
-            rst_cnt <= rst_cnt + 12'h1;
+            rst_cnt <= rst_cnt + 20'h1;
     end
 
     assign rst_gen = rst_cnt == `RST_CNT_END;

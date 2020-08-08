@@ -27,6 +27,7 @@ wire [`GPIO_W-1 :0]     gpio;
 //pll
 wire [5:0]   pll_cfg;
 assign rst_n = sys_rst;
+
 asic_top u0_asic_top(
 .SYS_CLK_IN(sys_clk),
 .SYS_CLK_OUT(),
@@ -129,17 +130,17 @@ asic_top u0_asic_top(
 
 N25Qxxx u0_spi_flash
 (
-  .C_(spi_flash_clk),
-  .S(spi_flash_cs[0]),
-  .DQ0(spi_flash_mosi),
-  .DQ1(spi_flash_miso),
+  .C_(spi_clk),
+  .S(spi_cs[0]),
+  .DQ0(spi_mosi),
+  .DQ1(spi_miso),
   .HOLD_DQ3(HOLD_DQ3),
   .Vpp_W_DQ2(Vpp_W_DQ2),
   .Vcc('d3000)
 );
 
 
-assign pll_cfg=6'b00_0000;
+assign pll_cfg=6'b00_0001;
 
 initial begin
   sys_clk = 0;

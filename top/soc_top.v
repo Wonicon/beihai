@@ -18,6 +18,8 @@ spi_clk,
 spi_mosi,
 spi_miso,
 
+//cpu dev clock
+dev_clk,
 //chiplink
 chiplink_rx_clk,
 chiplink_rx_rst,
@@ -48,6 +50,9 @@ output [1:0]    spi_cs;
 output          spi_clk;
 output          spi_mosi;
 input           spi_miso;
+
+//cpu dev clock
+input           dev_clk;
 
 //chiplink
 input           chiplink_rx_clk;
@@ -141,19 +146,20 @@ wire                      fifo_pready;
 wire  [`P_DATA_W-1:0]     fifo_prdata;
 wire                      fifo_pslverr;
 
-
+assign core_clk = clk;
 //top top.clock is div 2 top.coreclk
 //make top.clock named dev_clk
 //core clock is core_clk
-
+/*
 wire        core_clk;
 wire        dev_clk;
 assign core_clk = clk;
+
 div_2 u0_div2(
   .clk_out(dev_clk),
   .clk(clk),
   .reset(~rst_n)
-);
+);*/
 
 `ifndef BACKEND
 `define TOP DualTop
