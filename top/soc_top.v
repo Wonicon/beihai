@@ -330,7 +330,7 @@ always @ (posedge dev_clk or negedge rst_n)begin
     if(!rst_n)begin
             rst_s1 <= 1'b0;
             rst_s2 <= 1'b0;
-            rst_sync_n <= 1'b0;
+            core_rst <= 1'b0;
     end
     else begin
             rst_s1 <= 1'b1;

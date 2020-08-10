@@ -5,11 +5,6 @@ RTL_FLIST :=  ../amba/rtl/*.v \
              ../dev/uart/rtl/uart16550/*.v \
              ../cpu/core.v ../cpu/uncore.v ../cpu/SingleTop.v ../cpu/simram.v \
              ../top/soc_top.v \
-             ../dev/spi/rtl/spi_defines.v \
-             ../dev/spi/rtl/spi_clgen.v \
-             ../dev/spi/rtl/spi_shift.v \
-             ../dev/spi/rtl/spi_top.v \
-             ../dev/spi/rtl/spi_flash.v \
              ../lib/mem/*
 
 

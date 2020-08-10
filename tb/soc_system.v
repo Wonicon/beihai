@@ -28,7 +28,8 @@ spi_cs(spi_flash_cs),.
 spi_clk(spi_flash_clk),.
 spi_mosi(spi_flash_mosi),.
 spi_miso(spi_flash_miso),.
-
+//cpu dev clock
+dev_clk(clk),.
 //chiplink
 chiplink_rx_clk(),.
 chiplink_rx_rst(),.
