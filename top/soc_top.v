@@ -1,4 +1,4 @@
-`define BACKEND
+//`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -321,11 +321,29 @@ assign mmio_axi4_0_rlast = 1;
 `endif
 
 
+
+//deal with corerst 
+
+reg rst_s1,rst_s2;
+reg core_rst;
+always @ (posedge dev_clk or negedge rst_n)begin
+    if(!rst_n)begin
+            rst_s1 <= 1'b0;
+            rst_s2 <= 1'b0;
+            rst_sync_n <= 1'b0;
+    end
+    else begin
+            rst_s1 <= 1'b1;
+            rst_s2 <= rst_s1;
+            core_rst <= rst_s2;
+    end
+end
+
 `TOP top (
   .clock(dev_clk),
   .reset(~rst_n),
   .coreclk(core_clk),
-  .corerst(~rst_n),
+  .corerst(~core_rst),
   .interrupts(7'd0),
   .reset_to_hang_en(1'b0),
   .mem_part_en(1'b0),

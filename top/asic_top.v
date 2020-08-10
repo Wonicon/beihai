@@ -464,8 +464,6 @@ module crg(
     assign clk_apb_in   =   sys_clk;
     assign clk_cpucore =   FOUTPOSTDIV_1;
     assign clk_cpudev =   FOUTPOSTDIV_2;
-    assign rst_core = rst_gen;
-    assign rst_chiplink = rst_gen;
     
     //async_rst in and sync_rst out
     reg rst_s1,rst_s2;
@@ -491,8 +489,25 @@ module crg(
     end
 
     assign rst_gen = rst_cnt == `RST_CNT_END;
+    //async_rst in and sync_rst out
 
+    reg rst_s3,rst_s4;
+    reg rst_gen_sync;
+    always @ (posedge sys_clk or negedge rst_gen)begin
+        if(!sys_rst)begin
+            rst_s3 <= 1'b0;
+            rst_s4 <= 1'b0;
+            rst_gen_sync <= 1'b0;
+        end
+        else begin
+            rst_s3 <= 1'b1;
+            rst_s4 <= rst_s3;
+            rst_gen_sync <= rst_s4;
+        end
+    end
 
+    assign rst_core = rst_gen_sync;
+    assign rst_chiplink = rst_gen_sync;
     //pll1
     always@(pll_cfg[3:0] ) begin
         case(pll_cfg[3:0])
