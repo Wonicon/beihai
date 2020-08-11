@@ -23,6 +23,7 @@ wire        uart_tx;
 //gpio
 wire [`GPIO_W-1 :0]     gpio;
 
+wire [`interrupt-1:0] interrupt;
 
 //pll
 wire [5:0]   pll_cfg;
@@ -125,7 +126,11 @@ asic_top u0_asic_top(
 .PLL_M2(pll_cfg[2]),
 .PLL_M3(pll_cfg[3]),
 .PLL_M4(pll_cfg[4]),
-.PLL_M5(pll_cfg[5])
+.PLL_M5(pll_cfg[5]),
+//interrput
+.INTERRUPT_0(interrupt[0]),
+.INTERRUPT_1(interrupt[1]),
+.INTERRUPT_2(interrupt[2])
 );
 
 N25Qxxx u0_spi_flash

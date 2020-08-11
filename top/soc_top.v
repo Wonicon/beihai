@@ -1,4 +1,4 @@
-//`define BACKEND
+`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -37,7 +37,9 @@ uart_tx,
 
 gpio_i,
 gpio_o,
-gpio_oe
+gpio_oe,
+//interrupt
+interrupt
 );
 
 //cpu clock in
@@ -75,6 +77,7 @@ output  [`GPIO_W-1:0]     gpio_oe;
 
 
 //interrupt
+input   [`interrupt-1:0]   interrupt;
 
 wire                      irq_spi;
 wire                      irq_uart;
@@ -517,7 +520,8 @@ assign  fifo_presetn = rst_n;
 
 apb_afifo apb_afifo_spi_flash
 (
-  .s_pclk(clk),
+  //.s_pclk(clk),
+  .s_pclk(dev_clk),
   .s_presetn(rst_n),
   .s_paddr(m_paddr),
   .s_psel(m_psel),
@@ -684,7 +688,7 @@ gpio_apb u0_gpio_apb
 
 endmodule
 
-
+/*
 module div_2 (clk_out,clk,reset); 
     output clk_out;
     input reset;
@@ -692,4 +696,5 @@ module div_2 (clk_out,clk,reset);
     reg clk_out=1'b0;
     always @ (posedge clk)
       clk_out<=~clk_out; 
-endmodule
+endmodule*/
+

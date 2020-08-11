@@ -1,3 +1,4 @@
+`include "global_define.v"
 module asic_top(
 
 //sys clk
@@ -96,7 +97,12 @@ PLL_M1,
 PLL_M2,
 PLL_M3,
 PLL_M4,
-PLL_M5
+PLL_M5,
+
+//interrupt
+INTERRUPT_0,
+INTERRUPT_1,
+INTERRUPT_2
 
 );
 //sys clk
@@ -153,41 +159,41 @@ inout           CHIPLINK_RX_DAT28;
 inout           CHIPLINK_RX_DAT29;
 inout           CHIPLINK_RX_DAT30;
 inout           CHIPLINK_RX_DAT31;
-inout          CHIPLINK_TX_CLK;
-inout          CHIPLINK_TX_RST;
-inout          CHIPLINK_TX_SEND;
-inout          CHIPLINK_TX_DAT0;
-inout          CHIPLINK_TX_DAT1;
-inout          CHIPLINK_TX_DAT2;
-inout          CHIPLINK_TX_DAT3;
-inout          CHIPLINK_TX_DAT4;
-inout          CHIPLINK_TX_DAT5;
-inout          CHIPLINK_TX_DAT6;
-inout          CHIPLINK_TX_DAT7;
-inout          CHIPLINK_TX_DAT8;
-inout          CHIPLINK_TX_DAT9;
-inout          CHIPLINK_TX_DAT10;
-inout          CHIPLINK_TX_DAT11;
-inout          CHIPLINK_TX_DAT12;
-inout          CHIPLINK_TX_DAT13;
-inout          CHIPLINK_TX_DAT14;
-inout          CHIPLINK_TX_DAT15;
-inout          CHIPLINK_TX_DAT16;
-inout          CHIPLINK_TX_DAT17;
-inout          CHIPLINK_TX_DAT18;
-inout          CHIPLINK_TX_DAT19;
-inout          CHIPLINK_TX_DAT20;
-inout          CHIPLINK_TX_DAT21;
-inout          CHIPLINK_TX_DAT22;
-inout          CHIPLINK_TX_DAT23;
-inout          CHIPLINK_TX_DAT24;
-inout          CHIPLINK_TX_DAT25;
-inout          CHIPLINK_TX_DAT26;
-inout          CHIPLINK_TX_DAT27;
-inout          CHIPLINK_TX_DAT28;
-inout          CHIPLINK_TX_DAT29;
-inout          CHIPLINK_TX_DAT30;
-inout          CHIPLINK_TX_DAT31;
+inout           CHIPLINK_TX_CLK;
+inout           CHIPLINK_TX_RST;
+inout           CHIPLINK_TX_SEND;
+inout           CHIPLINK_TX_DAT0;
+inout           CHIPLINK_TX_DAT1;
+inout           CHIPLINK_TX_DAT2;
+inout           CHIPLINK_TX_DAT3;
+inout           CHIPLINK_TX_DAT4;
+inout           CHIPLINK_TX_DAT5;
+inout           CHIPLINK_TX_DAT6;
+inout           CHIPLINK_TX_DAT7;
+inout           CHIPLINK_TX_DAT8;
+inout           CHIPLINK_TX_DAT9;
+inout           CHIPLINK_TX_DAT10;
+inout           CHIPLINK_TX_DAT11;
+inout           CHIPLINK_TX_DAT12;
+inout           CHIPLINK_TX_DAT13;
+inout           CHIPLINK_TX_DAT14;
+inout           CHIPLINK_TX_DAT15;
+inout           CHIPLINK_TX_DAT16;
+inout           CHIPLINK_TX_DAT17;
+inout           CHIPLINK_TX_DAT18;
+inout           CHIPLINK_TX_DAT19;
+inout           CHIPLINK_TX_DAT20;
+inout           CHIPLINK_TX_DAT21;
+inout           CHIPLINK_TX_DAT22;
+inout           CHIPLINK_TX_DAT23;
+inout           CHIPLINK_TX_DAT24;
+inout           CHIPLINK_TX_DAT25;
+inout           CHIPLINK_TX_DAT26;
+inout           CHIPLINK_TX_DAT27;
+inout           CHIPLINK_TX_DAT28;
+inout           CHIPLINK_TX_DAT29;
+inout           CHIPLINK_TX_DAT30;
+inout           CHIPLINK_TX_DAT31;
 
 //PLL
 inout           PLL_M0;
@@ -197,7 +203,10 @@ inout           PLL_M3;
 inout           PLL_M4;
 inout           PLL_M5;
 
-
+//interrupt
+inout           INTERRUPT_0;
+inout           INTERRUPT_1;
+inout           INTERRUPT_2;
 
 wire            clk;
 wire            rst_n;
@@ -229,7 +238,8 @@ wire [`GPIO_W-1:0]  gpio_i;
 wire [`GPIO_W-1:0]  gpio_o;
 wire [`GPIO_W-1:0]  gpio_oe;
 
-
+//
+wire [`interrupt-1:0]   interrupt;
 
 wire     [5:0]       pll_cfg;
 
@@ -289,7 +299,10 @@ soc_top u0_soc_top(
 
 .gpio_i(gpio_i),
 .gpio_o(gpio_o),
-.gpio_oe(gpio_oe)
+.gpio_oe(gpio_oe),
+
+//interrupt
+.interrupt(interrupt)
 );
 
 `define OEN 1'b1 //gpio en
@@ -314,7 +327,11 @@ PDDW04DGZ_H_G u0_PLL_M3(.C(pll_cfg[3]),.PAD(PLL_M3),.I(),.REN(),.OEN(`OEN));
 PDDW04DGZ_H_G u0_PLL_M4(.C(pll_cfg[4]),.PAD(PLL_M4),.I(),.REN(),.OEN(`OEN));
 PDDW04DGZ_H_G u0_PLL_M5(.C(pll_cfg[5]),.PAD(PLL_M5),.I(),.REN(),.OEN(`OEN));
 
+//interrupt
 
+PDDW04DGZ_H_G u0_INTERRUPT_0(.C(interrupt[0]),.PAD(INTERRUPT_0),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_INTERRUPT_1(.C(interrupt[1]),.PAD(INTERRUPT_1),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_INTERRUPT_2(.C(interrupt[2]),.PAD(INTERRUPT_2),.I(),.REN(),.OEN(`OEN));
 //GPIO 4pin
 PDDW04DGZ_H_G u0_GPIO0(.C(gpio_o[0]),.PAD(GPIO0),.I(gpio_i[0]),.REN(),.OEN(~gpio_oe[0]));
 PDDW04DGZ_H_G u0_GPIO1(.C(gpio_o[1]),.PAD(GPIO1),.I(gpio_i[1]),.REN(),.OEN(~gpio_oe[1]));
@@ -494,7 +511,7 @@ module crg(
     reg rst_s3,rst_s4;
     reg rst_gen_sync;
     always @ (posedge sys_clk or negedge rst_gen)begin
-        if(!sys_rst)begin
+        if(!rst_gen)begin
             rst_s3 <= 1'b0;
             rst_s4 <= 1'b0;
             rst_gen_sync <= 1'b0;
