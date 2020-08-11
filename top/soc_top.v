@@ -1,4 +1,6 @@
 `define BACKEND
+`define CP_HACK_USE_GPIO
+//`define CP_HACK_USE_INT
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -342,20 +344,37 @@ always @ (posedge dev_clk or negedge rst_n)begin
     end
 end
 
+
+wire mem_part_en_hack;
+wire [2:0] ex_int;
+wire jtag_tdo;
+
+`ifdef CP_HACK_USE_GPIO
+// NOTE: Manually lit gpio_i[2] to perform mem_part cp init.
+// Is initial state of gpio_apb well determined?
+assign mem_part_en_hack = gpio_i[2];
+assign ex_int = interrupt;
+`else
+`ifdef CP_HACK_USE_INT
+assign mem_part_en_hack = interrupt[2];
+assign ex_int = {1'b0, interrupt[1:0]};
+`endif
+`endif
+
 `TOP top (
   .clock(dev_clk),
   .reset(~rst_n),
   .coreclk(core_clk),
   .corerst(~core_rst),
-  .interrupts(7'd0),
+  .interrupts(ex_int),
   .reset_to_hang_en(1'b0),
-  .mem_part_en(1'b0),
-  .distinct_hart_dsid_en(1'b0),
-  // {{{ debug
-  .debug_systemjtag_jtag_TCK(1'b0),
-  .debug_systemjtag_jtag_TMS(1'b0),
-  .debug_systemjtag_jtag_TDI(1'b0),
-  .debug_systemjtag_jtag_TDO_data(),
+  .mem_part_en(mem_part_en_hack),
+  .distinct_hart_dsid_en(mem_part_en_hack),
+  // {{{ debug: need to config gpio_oe on gpio_apb through apb?
+  .debug_systemjtag_jtag_TCK(gpio_i[0]),
+  .debug_systemjtag_jtag_TMS(gpio_i[1]),
+  .debug_systemjtag_jtag_TDI(gpio_i[2]),
+  .debug_systemjtag_jtag_TDO_data(jtag_tdo),
   .debug_systemjtag_jtag_TDO_driven(),  // no need
   .debug_systemjtag_reset(~rst_n),
   .debug_systemjtag_mfr_id(11'd0),  // no need
@@ -653,7 +672,7 @@ wire [31:0] gpio_output;
 wire [31:0] gpio_outen;
 
 assign gpio_input[`GPIO_W - 1 : 0] = gpio_i;
-assign gpio_o = gpio_output[`GPIO_W - 1 : 0];
+assign gpio_o = gpio_output[`GPIO_W - 1 : 0] | {jtag_tdo, 3'd0};
 assign gpio_oe = gpio_outen[`GPIO_W - 1 : 0];
 
 //gpio input as interrupt source input
