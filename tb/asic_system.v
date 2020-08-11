@@ -42,7 +42,7 @@ asic_top u0_asic_top(
 .SPI_MOSI(spi_mosi),
 //uart
 .UART_RX(uart_rx),
-.UART_TX(uart_rx),
+.UART_TX(uart_tx),
 //GPIO
 .GPIO0(gpio[0]),
 .GPIO1(gpio[1]),
