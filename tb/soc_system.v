@@ -16,6 +16,9 @@ wire                      spi_flash_mosi;
 wire                      spi_flash_miso;
 
 
+wire                      uart_rx;
+wire                      uart_tx;
+
 soc_top u0_soc_top(
 .
 clk(clk),.
@@ -41,8 +44,8 @@ chiplink_tx_rst(),.
 chiplink_tx_send(),.
 chiplink_tx_data(),.
 //uart
-uart_rx(),.
-uart_tx(),.
+uart_rx(uart_rx),.
+uart_tx(uart_tx),.
 //gpio
 
 gpio_i(),.
@@ -60,6 +63,13 @@ N25Qxxx u0_spi_flash
   .HOLD_DQ3(HOLD_DQ3),
   .Vpp_W_DQ2(Vpp_W_DQ2),
   .Vcc('d3000)
+);
+
+
+tty #() u0_tty
+(
+  .STX(uart_rx),
+  .SRX(uart_tx)
 );
 initial begin
   clk = 0;

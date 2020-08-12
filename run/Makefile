@@ -12,6 +12,7 @@ RTL_FLIST :=  ../amba/rtl/*.v \
 
 TB_FLIST :=   ../tb/*.v \
               ../dev/spiFlash/N25Q128A13E_VG12/code/N25Qxxx.v \
+              ../dev/uart/tb/tty.v \
 
 
 
