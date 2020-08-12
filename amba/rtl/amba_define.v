@@ -9,8 +9,8 @@
 `define SPI_FLASH_END    32'h100FFFFF
 
 //20bit
-`define UART_START       32'h41000000
-`define UART_END         32'h410fffff
+`define UART_START       32'h10100000
+`define UART_END         32'h101fffff
 
 
 `define GPIO_START       32'h41300000

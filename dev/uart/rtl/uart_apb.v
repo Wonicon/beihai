@@ -30,6 +30,7 @@ module uart_apb (
    wire       reg_re;   // Read enable for registers
    wire [2:0] reg_adr;
    reg  [7:0] reg_dat8_w; // write to reg
+   reg  [7:0] reg_dat8_w_reg;
    wire [7:0] reg_dat8_r; // read from reg
    wire       rts_internal;
    assign     rtsn = ~rts_internal;
@@ -56,6 +57,9 @@ module uart_apb (
              `endif
              endcase
    end
+   always @ (posedge PCLK) begin
+     reg_dat8_w_reg <= reg_dat8_w;
+   end
    //--------------------------------------------------------
    // Registers
    // As shown below reg_dat_i should be stable
@@ -77,7 +81,7 @@ module uart_apb (
           .clk         (PCLK),
           .wb_rst_i    (~PRESETn),
           .wb_addr_i   (reg_adr),
-          .wb_dat_i    (reg_dat8_w),
+          .wb_dat_i    (reg_dat8_w_reg),
           .wb_dat_o    (reg_dat8_r),
           .wb_we_i     (reg_we),
           .wb_re_i     (reg_re),
