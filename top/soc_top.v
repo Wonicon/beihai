@@ -38,9 +38,11 @@ uart_tx,
 //gpio1
 //gpio2
 //gpio3
-gpio_i,
-gpio_o,
-gpio_oe,
+gpio_0,  //TCK input
+gpio_1,  //TDI input
+gpio_2,  //TMS input
+gpio_3,  //TDO output
+//gpio_oe,
 //interrupt
 interrupt,
 core_clk_out
@@ -75,11 +77,15 @@ output[`chiplink_data_w - 1 : 0]         chiplink_tx_data;
 input           uart_rx;
 output          uart_tx;
 //gpio
+/*
 input   [`GPIO_W-1:0]     gpio_i;
 output  [`GPIO_W-1:0]     gpio_o;
 output  [`GPIO_W-1:0]     gpio_oe;
-
-
+*/
+input           gpio_0;
+input           gpio_1;
+input           gpio_2;
+output          gpio_3;
 //interrupt
 input   [`interrupt-1:0]   interrupt;
 output        core_clk_out;
@@ -652,6 +658,9 @@ uart_apb u0_uart_apb
   .stx       (uart_tx)
 );
 //gpio
+
+
+/*
 wire [31:0] gpio_input;
 wire [31:0] gpio_output;
 wire [31:0] gpio_outen;
@@ -689,7 +698,7 @@ gpio_apb u0_gpio_apb
   .aux_i(),
   .clk_pad_i()
 );
-
+*/
 endmodule
 
 
