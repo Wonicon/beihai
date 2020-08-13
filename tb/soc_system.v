@@ -15,6 +15,9 @@ wire    [1:0]             spi_flash_cs;
 wire                      spi_flash_mosi;
 wire                      spi_flash_miso;
 
+wire                      uart_rx;
+wire                      uart_tx;
+
 
 wire                      uart_rx;
 wire                      uart_tx;
@@ -51,6 +54,13 @@ uart_tx(uart_tx),.
 gpio_i(),.
 gpio_o(),.
 gpio_oe()
+);
+
+
+tty tty0
+(
+  .STX(uart_rx),
+  .SRX(uart_tx)
 );
 
 
