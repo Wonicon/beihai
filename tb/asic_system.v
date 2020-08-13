@@ -24,7 +24,7 @@ wire        uart_tx;
 wire [`GPIO_W-1 :0]     gpio;
 
 wire [`interrupt-1:0] interrupt;
-
+wire        core_clk_out;
 //pll
 wire [5:0]   pll_cfg;
 assign rst_n = sys_rst;
@@ -130,7 +130,7 @@ asic_top u0_asic_top(
 //interrput
 .INTERRUPT_0(interrupt[0]),
 .INTERRUPT_1(interrupt[1]),
-.INTERRUPT_2(interrupt[2])
+.INTERRUPT_2(core_clk_out)
 );
 
 N25Qxxx u0_spi_flash

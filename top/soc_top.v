@@ -34,12 +34,16 @@ chiplink_tx_data,
 uart_rx,
 uart_tx,
 //gpio
-
+//gpio0 
+//gpio1
+//gpio2
+//gpio3
 gpio_i,
 gpio_o,
 gpio_oe,
 //interrupt
-interrupt
+interrupt,
+core_clk_out
 );
 
 //cpu clock in
@@ -78,7 +82,7 @@ output  [`GPIO_W-1:0]     gpio_oe;
 
 //interrupt
 input   [`interrupt-1:0]   interrupt;
-
+output        core_clk_out;
 
 //
 wire            core_clk;
@@ -161,6 +165,8 @@ div_8 u0_div8(
         .clk(core_clk),
         .reset_n(rst_n)
 );
+
+assign core_clk_out = core_clk_div8;
 
 `ifndef BACKEND
 `define TOP DualTop

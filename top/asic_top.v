@@ -117,7 +117,7 @@ inout          SPI_MISO;
 inout          SPI_MOSI;
 //uart
 inout           UART_RX;
-inout          UART_TX;
+inout           UART_TX;
 //GPIO
 inout           GPIO0;
 inout           GPIO1;
@@ -240,7 +240,8 @@ wire [`GPIO_W-1:0]  gpio_oe;
 
 //
 wire [`interrupt-1:0]   interrupt;
-
+//core_clk_out use interrupt2 to output
+wire                 core_clk_out;
 wire     [5:0]       pll_cfg;
 
 
@@ -302,7 +303,8 @@ soc_top u0_soc_top(
 .gpio_oe(gpio_oe),
 
 //interrupt
-.interrupt(interrupt)
+.interrupt(interrupt),
+.core_clk_out(core_clk_out)
 );
 
 `define OEN 1'b1 //gpio en
@@ -331,7 +333,7 @@ PDDW04DGZ_H_G u0_PLL_M5(.C(pll_cfg[5]),.PAD(PLL_M5),.I(),.REN(),.OEN(`OEN));
 
 PDDW04DGZ_H_G u0_INTERRUPT_0(.C(interrupt[0]),.PAD(INTERRUPT_0),.I(),.REN(),.OEN(`OEN));
 PDDW04DGZ_H_G u0_INTERRUPT_1(.C(interrupt[1]),.PAD(INTERRUPT_1),.I(),.REN(),.OEN(`OEN));
-PDDW04DGZ_H_G u0_INTERRUPT_2(.C(interrupt[2]),.PAD(INTERRUPT_2),.I(),.REN(),.OEN(`OEN));
+PDDW04DGZ_H_G u0_INTERRUPT_2(.C(),.PAD(INTERRUPT_2),.I(core_clk_out),.REN(),.OEN(~`OEN));
 //GPIO 4pin
 PDDW04DGZ_H_G u0_GPIO0(.C(gpio_o[0]),.PAD(GPIO0),.I(gpio_i[0]),.REN(),.OEN(~gpio_oe[0]));
 PDDW04DGZ_H_G u0_GPIO1(.C(gpio_o[1]),.PAD(GPIO1),.I(gpio_i[1]),.REN(),.OEN(~gpio_oe[1]));
