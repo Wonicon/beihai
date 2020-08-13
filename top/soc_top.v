@@ -357,10 +357,10 @@ end
   .reset(~rst_n),
   .coreclk(core_clk),
   .corerst(~core_rst),
-  .interrupts({5'd0, interrupt[1:0]}),
+  .interrupts({6'd0, interrupt[0]}),
   .reset_to_hang_en(1'b0),
-  .mem_part_en(interrupt[2]),
-  .distinct_hart_dsid_en(interrupt[2]),
+  .mem_part_en(1'b0),
+  .distinct_hart_dsid_en(1'b0),
   // {{{ debug
   .debug_systemjtag_jtag_TCK(gpio_0),
   .debug_systemjtag_jtag_TMS(gpio_1),

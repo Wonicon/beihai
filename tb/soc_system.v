@@ -48,12 +48,12 @@ chiplink_tx_send(),.
 chiplink_tx_data(),.
 //uart
 uart_rx(uart_rx),.
-uart_tx(uart_tx),.
+uart_tx(uart_tx)
 //gpio
 
-gpio_i(),.
-gpio_o(),.
-gpio_oe()
+//gpio_i(),.
+//gpio_o(),.
+//gpio_oe()
 );
 
 
