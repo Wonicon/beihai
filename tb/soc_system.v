@@ -19,6 +19,9 @@ wire                      uart_rx;
 wire                      uart_tx;
 
 
+wire                      uart_rx;
+wire                      uart_tx;
+
 soc_top u0_soc_top(
 .
 clk(clk),.
@@ -70,6 +73,13 @@ N25Qxxx u0_spi_flash
   .HOLD_DQ3(HOLD_DQ3),
   .Vpp_W_DQ2(Vpp_W_DQ2),
   .Vcc('d3000)
+);
+
+
+tty #() u0_tty
+(
+  .STX(uart_rx),
+  .SRX(uart_tx)
 );
 initial begin
   clk = 0;

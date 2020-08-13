@@ -1,6 +1,4 @@
 `define BACKEND
-`define CP_HACK_USE_GPIO
-//`define CP_HACK_USE_INT
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -81,6 +79,11 @@ output  [`GPIO_W-1:0]     gpio_oe;
 //interrupt
 input   [`interrupt-1:0]   interrupt;
 
+
+//
+wire            core_clk;
+wire            core_clk_div8;
+
 wire                      irq_spi;
 wire                      irq_uart;
 wire                      irq_gpio;
@@ -152,19 +155,12 @@ wire  [`P_DATA_W-1:0]     fifo_prdata;
 wire                      fifo_pslverr;
 
 assign core_clk = clk;
-//top top.clock is div 2 top.coreclk
-//make top.clock named dev_clk
-//core clock is core_clk
-/*
-wire        core_clk;
-wire        dev_clk;
-assign core_clk = clk;
-
-div_2 u0_div2(
-  .clk_out(dev_clk),
-  .clk(clk),
-  .reset(~rst_n)
-);*/
+//core_clk div8 used to monitor pll
+div_8 u0_div8(
+        .clk_out(core_clk_div8),
+        .clk(core_clk),
+        .reset_n(rst_n)
+);
 
 `ifndef BACKEND
 `define TOP DualTop
@@ -344,37 +340,20 @@ always @ (posedge dev_clk or negedge rst_n)begin
     end
 end
 
-
-wire mem_part_en_hack;
-wire [2:0] ex_int;
-wire jtag_tdo;
-
-`ifdef CP_HACK_USE_GPIO
-// NOTE: Manually lit gpio_i[2] to perform mem_part cp init.
-// Is initial state of gpio_apb well determined?
-assign mem_part_en_hack = gpio_i[2];
-assign ex_int = interrupt;
-`else
-`ifdef CP_HACK_USE_INT
-assign mem_part_en_hack = interrupt[2];
-assign ex_int = {1'b0, interrupt[1:0]};
-`endif
-`endif
-
 `TOP top (
   .clock(dev_clk),
   .reset(~rst_n),
   .coreclk(core_clk),
   .corerst(~core_rst),
-  .interrupts(ex_int),
+  .interrupts(7'd0),
   .reset_to_hang_en(1'b0),
-  .mem_part_en(mem_part_en_hack),
-  .distinct_hart_dsid_en(mem_part_en_hack),
-  // {{{ debug: need to config gpio_oe on gpio_apb through apb?
-  .debug_systemjtag_jtag_TCK(gpio_i[0]),
-  .debug_systemjtag_jtag_TMS(gpio_i[1]),
-  .debug_systemjtag_jtag_TDI(gpio_i[2]),
-  .debug_systemjtag_jtag_TDO_data(jtag_tdo),
+  .mem_part_en(1'b0),
+  .distinct_hart_dsid_en(1'b0),
+  // {{{ debug
+  .debug_systemjtag_jtag_TCK(1'b0),
+  .debug_systemjtag_jtag_TMS(1'b0),
+  .debug_systemjtag_jtag_TDI(1'b0),
+  .debug_systemjtag_jtag_TDO_data(),
   .debug_systemjtag_jtag_TDO_driven(),  // no need
   .debug_systemjtag_reset(~rst_n),
   .debug_systemjtag_mfr_id(11'd0),  // no need
@@ -672,7 +651,7 @@ wire [31:0] gpio_output;
 wire [31:0] gpio_outen;
 
 assign gpio_input[`GPIO_W - 1 : 0] = gpio_i;
-assign gpio_o = gpio_output[`GPIO_W - 1 : 0] | {jtag_tdo, 3'd0};
+assign gpio_o = gpio_output[`GPIO_W - 1 : 0];
 assign gpio_oe = gpio_outen[`GPIO_W - 1 : 0];
 
 //gpio input as interrupt source input
@@ -707,13 +686,27 @@ gpio_apb u0_gpio_apb
 
 endmodule
 
-/*
-module div_2 (clk_out,clk,reset); 
+
+module div_8 (
+        clk_out,
+        clk,
+        reset_n); 
     output clk_out;
-    input reset;
+    input reset_n;
     input clk;
-    reg clk_out=1'b0;
-    always @ (posedge clk)
-      clk_out<=~clk_out; 
-endmodule*/
+    reg clk_out;
+    reg [1:0] counter_8;
+    always @(posedge clk or negedge reset_n) begin
+      if(~reset_n) begin
+        counter_8 <= 0;
+        clk_out <= 0;
+      end else if(counter_8 == 2'b11) begin
+        counter_8 <= 0;
+        clk_out <= ~clk_out;
+      end else begin
+        counter_8 <= counter_8 + 2'b01;
+      end
+    end
+
+endmodule
 

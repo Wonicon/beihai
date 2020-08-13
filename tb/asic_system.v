@@ -42,7 +42,7 @@ asic_top u0_asic_top(
 .SPI_MOSI(spi_mosi),
 //uart
 .UART_RX(uart_rx),
-.UART_TX(uart_tx),
+.UART_TX(uart_rx),
 //GPIO
 .GPIO0(gpio[0]),
 .GPIO1(gpio[1]),
@@ -144,7 +144,11 @@ N25Qxxx u0_spi_flash
   .Vcc('d3000)
 );
 
-
+tty #() u0_tty
+(
+  .STX(uart_rx),
+  .SRX(uart_tx)
+);
 assign pll_cfg=6'b00_0001;
 
 initial begin
