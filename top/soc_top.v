@@ -357,15 +357,15 @@ end
   .reset(~rst_n),
   .coreclk(core_clk),
   .corerst(~core_rst),
-  .interrupts(7'd0),
+  .interrupts({5'd0, interrupt[1:0]}),
   .reset_to_hang_en(1'b0),
-  .mem_part_en(1'b0),
-  .distinct_hart_dsid_en(1'b0),
+  .mem_part_en(interrupt[2]),
+  .distinct_hart_dsid_en(interrupt[2]),
   // {{{ debug
-  .debug_systemjtag_jtag_TCK(1'b0),
-  .debug_systemjtag_jtag_TMS(1'b0),
-  .debug_systemjtag_jtag_TDI(1'b0),
-  .debug_systemjtag_jtag_TDO_data(),
+  .debug_systemjtag_jtag_TCK(gpio_0),
+  .debug_systemjtag_jtag_TMS(gpio_1),
+  .debug_systemjtag_jtag_TDI(gpio_2),
+  .debug_systemjtag_jtag_TDO_data(gpio_3),
   .debug_systemjtag_jtag_TDO_driven(),  // no need
   .debug_systemjtag_reset(~rst_n),
   .debug_systemjtag_mfr_id(11'd0),  // no need
