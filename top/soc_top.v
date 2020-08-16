@@ -1,4 +1,4 @@
-`define BACKEND
+//`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -353,19 +353,36 @@ always @ (posedge dev_clk or negedge rst_n)begin
 end
 
 //deal with pll soft cfg ctr single
+reg [31:0] pll_temp;
 always @ (posedge apb_clk_in or negedge rst_n)begin
   if(!rst_n) begin
-      pll_cfg_ctr <=1'b0;
-      pll_cfg_1 <=64'h0000_0000_0000_0000;
-      pll_cfg_2 <=64'h0000_0000_0000_0000;
+      pll_cfg_ctr <= 1'b0;
+      pll_cfg_1 <= 64'h0000_0000_0000_0000;
+      pll_cfg_2 <= 64'h0000_0000_0000_0000;
+      pll_temp <= 64'd0;
   end
   else begin
     pll_cfg_ctr <= ((pll_cfg_1 != 64'h0000_0000_0000_0000 )&&(pll_cfg_2 != 64'h0000_0000_0000_0000))?1'b1:1'b0;
+
+    if (s_psel2 && s_penable2 && s_pwrite2) begin
+      case (s_paddr2[3:2])
+        2'b00: pll_temp <= s_pwdata2;
+        2'b01: pll_cfg_1 <= {s_pwdata2, pll_temp};
+        2'b10: pll_temp <= s_pwdata2;
+        2'b11: pll_cfg_2 <= {s_pwdata2, pll_temp};
+      endcase
+    end
     //test pll1_5 pll2_by
-    pll_cfg_1 <= 64'h0000_0000_0228_0052;
-    pll_cfg_2 <= 64'h0000_0000_0224_0053;
+    //pll_cfg_1 <= 64'h0000_0000_0228_0052;
+    //pll_cfg_2 <= 64'h0000_0000_0224_0053;
   end
 end
+
+assign s_pready2 = s_psel2 && s_penable2;
+assign s_prdata2 = s_paddr2[3:2] == 2'b00 ? pll_cfg_1[31:0] :
+                                    2'b01 ? pll_cfg_1[63:32] :
+                                    2'b10 ? pll_cfg_2[31:0] :
+                                    2'b11 ? pll_cfg_2[63:32] : 32'd0;
 
 `TOP top (
   .clock(dev_clk),
