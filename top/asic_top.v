@@ -248,22 +248,30 @@ wire            gpio_3;
 wire [`interrupt-1:0]   interrupt;
 //core_clk_out use interrupt2 to output
 wire                 core_clk_out;
-wire     [5:0]       pll_cfg;
 
-
-
+wire    [5:0]    pll_cfg;
+wire    [63:0]    pll_cfg_1;
+wire    [63:0]    pll_cfg_2;
+wire        pll_cfg_ctr;
 
 wire        clk_cpucore;
 wire        rst_core;
 wire        clk_cpudev;
 wire        rst_chiplink;
 wire        clk_apb_in;
-
-
-crg u0_crg(
+crg_hard u0_crg(
     .sys_clk(clk),
     .sys_rst(rst_n),
+    //chose pll config mode
+    //if interrupt[1] is 1 chose pll_hard otherwise chose pll_soft
+    .mode(interrupt[1]),
+    //hard mode
     .pll_cfg(pll_cfg),
+    //soft mode
+    .pll_cfg_1(pll_cfg_1),
+    .pll_cfg_2(pll_cfg_2),
+    .pll_cfg_ctr(pll_cfg_ctr),
+
     .clk_cpucore(clk_cpucore),
     .rst_core(rst_core),
     .clk_cpudev(clk_cpudev),
@@ -273,6 +281,17 @@ crg u0_crg(
     .pll_lock_2()
 );
 
+
+
+/*
+//chose pll config mode
+//if interrupt[1] is 1 chose pll_hard otherwise chose pll_soft
+assign        clk_cpucore=interrupt[1] ? clk_cpucore_hard : clk_cpucore_soft;
+assign        rst_core=interrupt[1] ? rst_core_hard : rst_core_soft;
+assign        clk_cpudev=interrupt[1] ? clk_cpudev_hard : clk_cpucore_soft;
+assign        rst_chiplink=interrupt[1] ? rst_chiplink_hard : rst_chiplink_soft;
+assign        clk_apb_in=interrupt[1] ? clk_apb_in_hard : clk_apb_in_soft;
+*/
 
 soc_top u0_soc_top(
 //cpu clock in
@@ -290,7 +309,6 @@ soc_top u0_soc_top(
 .dev_clk(clk_cpudev),
 //chiplink
 .chiplink_rx_clk(chiplink_rx_clk),
-//.chiplink_rx_clk(clk_chiplink),
 .chiplink_rx_rst(chiplink_rx_rst),
 .chiplink_rx_send(chiplink_rx_send),
 .chiplink_rx_data(chiplink_rx_data),
@@ -311,7 +329,10 @@ soc_top u0_soc_top(
 
 //interrupt
 .interrupt(interrupt),
-.core_clk_out(core_clk_out)
+.core_clk_out(core_clk_out),
+.pll_cfg_1(pll_cfg_1),
+.pll_cfg_2(pll_cfg_2),
+.pll_cfg_ctr(pll_cfg_ctr)
 );
 
 `define OEN 1'b1 //gpio en
@@ -423,10 +444,18 @@ endmodule
 
 
 `define RST_CNT_END 20'h1ffff
-module crg(
+module crg_hard(
     sys_clk,
     sys_rst,
+    //chose pll config mode
+    //if interrupt[1] is 1 chose pll_hard otherwise chose pll_soft
+    mode,
+    //hard mode
     pll_cfg,
+    //soft mode
+    pll_cfg_1,
+    pll_cfg_2,
+    pll_cfg_ctr,
     clk_cpucore,
     rst_core,
     clk_cpudev,
@@ -438,7 +467,11 @@ module crg(
 
     input       sys_clk;
     input       sys_rst;
+    input       mode;
     input [5:0] pll_cfg;
+    input [63:0]      pll_cfg_1;
+    input [63:0]      pll_cfg_2;
+    input       pll_cfg_ctr;
     output      clk_cpucore;
     output      rst_core;
     output      clk_cpudev;
@@ -448,38 +481,111 @@ module crg(
     output      pll_lock_2;
 
     wire                 rst_gen;
+
+
+
     //wire pll_1
-    reg             BYPASS_1;
-    reg             DSMPD_1;
-    reg  [11:0]     FBDIV_1;
-    reg             FOUTPOSTDIVPD_1;
-    reg             FOUTVCOPD_1;
-    reg             FREF_1;
-    reg             PD_1;
-    reg  [2:0]      POSTDIV1_1;
-    reg  [2:0]      POSTDIV2_1;
-    reg  [5:0]      REFDIV_1;
-    wire            CLKSSCG_1;
-    wire            FOUTPOSTDIV_1;
-    wire            FOUTVCO_1;
-    wire            LOCK_1;
+    wire             BYPASS_1;
+    wire             DSMPD_1;
+    wire  [11:0]     FBDIV_1;
+    wire             FOUTPOSTDIVPD_1;
+    wire             FOUTVCOPD_1;
+    wire             FREF_1;
+    wire             PD_1;
+    wire  [2:0]      POSTDIV1_1;
+    wire  [2:0]      POSTDIV2_1;
+    wire  [5:0]      REFDIV_1;
+    wire             CLKSSCG_1;
+    wire             FOUTPOSTDIV_1;
+    wire             FOUTVCO_1;
+    wire             LOCK_1;
     //wire pll_2
-    reg             BYPASS_2;
-    reg             DSMPD_2;
-    reg  [11:0]     FBDIV_2;
-    reg             FOUTPOSTDIVPD_2;
-    reg             FOUTVCOPD_2;
-    reg             FREF_2;
-    reg             PD_2;
-    reg  [2:0]      POSTDIV1_2;
-    reg  [2:0]      POSTDIV2_2;
-    reg  [5:0]      REFDIV_2;
-    wire            CLKSSCG_2;
-    wire            FOUTPOSTDIV_2;
-    wire            FOUTVCO_2;
-    wire            LOCK_2;
+    wire             BYPASS_2;
+    wire             DSMPD_2;
+    wire  [11:0]     FBDIV_2;
+    wire             FOUTPOSTDIVPD_2;
+    wire             FOUTVCOPD_2;
+    wire             FREF_2;
+    wire             PD_2;
+    wire  [2:0]      POSTDIV1_2;
+    wire  [2:0]      POSTDIV2_2;
+    wire  [5:0]      REFDIV_2;
+    wire             CLKSSCG_2;
+    wire             FOUTPOSTDIV_2;
+    wire             FOUTVCO_2;
+    wire             LOCK_2;
 
+    //hard mode 
+    //wire pll_1
+    reg             BYPASS_1_hard;
+    reg             DSMPD_1_hard;
+    reg  [11:0]     FBDIV_1_hard;
+    reg             FOUTPOSTDIVPD_1_hard;
+    reg             FOUTVCOPD_1_hard;
+    reg             FREF_1_hard;
+    reg             PD_1_hard;
+    reg  [2:0]      POSTDIV1_1_hard;
+    reg  [2:0]      POSTDIV2_1_hard;
+    reg  [5:0]      REFDIV_1_hard;
+ 
+    //wire pll_2
+    reg             BYPASS_2_hard;
+    reg             DSMPD_2_hard;
+    reg  [11:0]     FBDIV_2_hard;
+    reg             FOUTPOSTDIVPD_2_hard;
+    reg             FOUTVCOPD_2_hard;
+    reg             FREF_2_hard;
+    reg             PD_2_hard;
+    reg  [2:0]      POSTDIV1_2_hard;
+    reg  [2:0]      POSTDIV2_2_hard;
+    reg  [5:0]      REFDIV_2_hard;
+    //soft mode 
+    //wire pll_1
+    wire             BYPASS_1_soft;
+    wire             DSMPD_1_soft;
+    wire  [11:0]     FBDIV_1_soft;
+    wire             FOUTPOSTDIVPD_1_soft;
+    wire             FOUTVCOPD_1_soft;
+    wire             FREF_1_soft;
+    wire             PD_1_soft;
+    wire  [2:0]      POSTDIV1_1_soft;
+    wire  [2:0]      POSTDIV2_1_soft;
+    wire  [5:0]      REFDIV_1_soft;
+ 
+    //wire pll_2
+    wire             BYPASS_2_soft;
+    wire             DSMPD_2_soft;
+    wire  [11:0]     FBDIV_2_soft;
+    wire             FOUTPOSTDIVPD_2_soft;
+    wire             FOUTVCOPD_2_soft;
+    wire             FREF_2_soft;
+    wire             PD_2_soft;
+    wire  [2:0]      POSTDIV1_2_soft;
+    wire  [2:0]      POSTDIV2_2_soft;
+    wire  [5:0]      REFDIV_2_soft;
 
+    //soft pll_1
+    assign BYPASS_1_soft =  pll_cfg_1[0];
+    assign DSMPD_1_soft =   pll_cfg_1[1];
+    assign FBDIV_1_soft =   pll_cfg_1[13:2];
+    assign FOUTPOSTDIVPD_1_soft =   pll_cfg_1[14];
+    assign FOUTVCOPD_1_soft =   pll_cfg_1[15];
+    assign FREF_1_soft = pll_cfg_1[16];
+    assign PD_1_soft    =   pll_cfg_1[17];
+    assign POSTDIV1_1_soft  = pll_cfg_1[20:18];
+    assign POSTDIV2_1_soft = pll_cfg_1[23:21];
+    assign REFDIV_1_soft = pll_cfg_1[29:24];
+    //soft pll_2
+    assign BYPASS_2_soft =  pll_cfg_2[0];
+    assign DSMPD_2_soft =   pll_cfg_2[1];
+    assign FBDIV_2_soft =   pll_cfg_2[13:2];
+    assign FOUTPOSTDIVPD_2_soft =   pll_cfg_2[14];
+    assign FOUTVCOPD_2_soft =   pll_cfg_2[15];
+    assign FREF_2_soft = pll_cfg_2[16];
+    assign PD_2_soft    =   pll_cfg_2[17];
+    assign POSTDIV1_2_soft  = pll_cfg_2[20:18];
+    assign POSTDIV2_2_soft = pll_cfg_2[23:21];
+    assign REFDIV_2_soft = pll_cfg_2[29:24];    
     //pll_lock
     assign pll_lock_1 = LOCK_1;
     assign pll_lock_2 = LOCK_2;
@@ -488,9 +594,11 @@ module crg(
     assign FREF   =   sys_clk;
   
     assign clk_apb_in   =   sys_clk;
-    assign clk_cpucore =   FOUTPOSTDIV_1;
+    /*assign clk_cpucore =   FOUTPOSTDIV_1;
     assign clk_cpudev =   FOUTPOSTDIV_2;
-    
+    */
+    assign clk_cpucore = mode ?  FOUTPOSTDIV_1 : (pll_cfg_ctr &LOCK_1 )? FOUTPOSTDIV_1 : sys_clk;
+    assign clk_cpudev =  mode ? FOUTPOSTDIV_2 : (pll_cfg_ctr &LOCK_2)? FOUTPOSTDIV_2 : sys_clk;
     //async_rst in and sync_rst out
     reg rst_s1,rst_s2;
     reg rst_sync_n;
@@ -517,7 +625,8 @@ module crg(
     assign rst_gen = rst_cnt == `RST_CNT_END;
     //async_rst in and sync_rst out
 
-    reg rst_s3,rst_s4;
+    reg rst_s3,rst_s4;;
+
     reg rst_gen_sync;
     always @ (posedge sys_clk or negedge rst_gen)begin
         if(!rst_gen)begin
@@ -534,185 +643,209 @@ module crg(
 
     assign rst_core = rst_gen_sync;
     assign rst_chiplink = rst_gen_sync;
-    //pll1
+    //pll1 hard
     always@(pll_cfg[3:0] ) begin
         case(pll_cfg[3:0])
-        4'b0000: begin //pll_1 bypass
+        4'b0000: begin //pll_1_hard bypass
             //pll1
-            BYPASS_1 = 1'b1;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd20;		
-            POSTDIV1_1		= 3'b001;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b1;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd20;		
+            POSTDIV1_1_hard		= 3'b001;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
     
         end
-        4'b0001: begin //pll_1 5 
+        4'b0001: begin //pll_1_hard 5 
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd20;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd20;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         
         end
-        4'b0010: begin //pll_1 6 
+        4'b0010: begin //pll_1_hard 6 
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd24;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd24;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b0011: begin //pll_1 7
+        4'b0011: begin //pll_1_hard 7
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd28;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd28;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b0100: begin //pll_1 8
+        4'b0100: begin //pll_1_hard 8
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd32;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd32;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b0101: begin //pll_1 9
+        4'b0101: begin //pll_1_hard 9
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd36;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd36;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b0110: begin //pll_1 10
+        4'b0110: begin //pll_1_hard 10
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd40;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd40;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b0111: begin //pll_1 11
+        4'b0111: begin //pll_1_hard 11
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd44;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd44;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
-        4'b1000: begin //pll_1 12
+        4'b1000: begin //pll_1_hard 12
             //pll1
-            BYPASS_1 = 1'b0;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd48;		
-            POSTDIV1_1		= 3'b010;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b0;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd48;		
+            POSTDIV1_1_hard		= 3'b010;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
         default: begin //bypass
-            BYPASS_1 = 1'b1;
-            REFDIV_1		= 6'b000010;		
-		    FBDIV_1			= 12'd20;		
-            POSTDIV1_1		= 3'b001;		
-            POSTDIV2_1		= 3'b001;		
-            PD_1			= 1'b0;			
-            DSMPD_1			= 1'b1;	
-            FOUTPOSTDIVPD_1 = 1'b0;
-            FOUTVCOPD_1     = 1'b0;
+            BYPASS_1_hard = 1'b1;
+            REFDIV_1_hard		= 6'b000010;		
+		    FBDIV_1_hard			= 12'd20;		
+            POSTDIV1_1_hard		= 3'b001;		
+            POSTDIV2_1_hard		= 3'b001;		
+            PD_1_hard			= 1'b0;			
+            DSMPD_1_hard			= 1'b1;	
+            FOUTPOSTDIVPD_1_hard = 1'b0;
+            FOUTVCOPD_1_hard     = 1'b0;
         end
         endcase
     end
 
-    //pll2
+    //pll2 hard
     always@(pll_cfg[5:4] ) begin
         case(pll_cfg[5:4])
-        2'b00: begin //pll_2 bypass
+        2'b00: begin //pll_2_hard bypass
             //pll2
-            BYPASS_2 = 1'b1;
-            REFDIV_2		= 6'b000010;		
-		    FBDIV_2			= 12'd20;		
-            POSTDIV1_2		= 3'b001;		
-            POSTDIV2_2		= 3'b001;		
-            PD_2			= 1'b0;			
-            DSMPD_2			= 1'b1;	
-            FOUTPOSTDIVPD_2 = 1'b0;
-            FOUTVCOPD_2     = 1'b0;
+            BYPASS_2_hard = 1'b1;
+            REFDIV_2_hard		= 6'b000010;		
+		    FBDIV_2_hard			= 12'd20;		
+            POSTDIV1_2_hard		= 3'b001;		
+            POSTDIV2_2_hard		= 3'b001;		
+            PD_2_hard			= 1'b0;			
+            DSMPD_2_hard			= 1'b1;	
+            FOUTPOSTDIVPD_2_hard = 1'b0;
+            FOUTVCOPD_2_hard     = 1'b0;
         end
-        2'b01: begin // pll_2 1.5
+        2'b01: begin // pll_2_hard 1.5
             //pll2
-            BYPASS_2 = 1'b0;
-            REFDIV_2		= 6'b000100;		
-		    FBDIV_2			= 12'd30;		
-            POSTDIV1_2		= 3'b101;		
-            POSTDIV2_2		= 3'b001;		
-            PD_2			= 1'b0;			
-            DSMPD_2			= 1'b1;	
-            FOUTPOSTDIVPD_2 = 1'b0;
-            FOUTVCOPD_2     = 1'b0;
+            BYPASS_2_hard = 1'b0;
+            REFDIV_2_hard		= 6'b000100;		
+		    FBDIV_2_hard			= 12'd30;		
+            POSTDIV1_2_hard		= 3'b101;		
+            POSTDIV2_2_hard		= 3'b001;		
+            PD_2_hard			= 1'b0;			
+            DSMPD_2_hard			= 1'b1;	
+            FOUTPOSTDIVPD_2_hard = 1'b0;
+            FOUTVCOPD_2_hard     = 1'b0;
         end
-        2'b10: begin //pll_2 2
+        2'b10: begin //pll_2_hard 2
             //pll2
-            BYPASS_2 = 1'b0;
-            REFDIV_2		= 6'b000010;		
-		    FBDIV_2			= 12'd24;		
-            POSTDIV1_2		= 3'b011;		
-            POSTDIV2_2		= 3'b010;		
-            PD_2			= 1'b0;			
-            DSMPD_2			= 1'b1;	
-            FOUTPOSTDIVPD_2 = 1'b0;
-            FOUTVCOPD_2     = 1'b0;
+            BYPASS_2_hard = 1'b0;
+            REFDIV_2_hard		= 6'b000010;		
+		    FBDIV_2_hard			= 12'd24;		
+            POSTDIV1_2_hard		= 3'b011;		
+            POSTDIV2_2_hard		= 3'b010;		
+            PD_2_hard			= 1'b0;			
+            DSMPD_2_hard			= 1'b1;	
+            FOUTPOSTDIVPD_2_hard = 1'b0;
+            FOUTVCOPD_2_hard     = 1'b0;
         end
         default: begin //by pass
-            BYPASS_2 = 1'b1;
-            REFDIV_2		= 6'b000010;		
-		    FBDIV_2			= 12'd20;		
-            POSTDIV1_2		= 3'b001;		
-            POSTDIV2_2		= 3'b001;		
-            PD_2			= 1'b0;			
-            DSMPD_2			= 1'b1;	
-            FOUTPOSTDIVPD_2 = 1'b0;
-            FOUTVCOPD_2     = 1'b0;
+            BYPASS_2_hard = 1'b1;
+            REFDIV_2_hard		= 6'b000010;		
+		    FBDIV_2_hard			= 12'd20;		
+            POSTDIV1_2_hard		= 3'b001;		
+            POSTDIV2_2_hard		= 3'b001;		
+            PD_2_hard			= 1'b0;			
+            DSMPD_2_hard			= 1'b1;	
+            FOUTPOSTDIVPD_2_hard = 1'b0;
+            FOUTVCOPD_2_hard     = 1'b0;
         end
         endcase
     end
+    //pll1 config select
+    assign  BYPASS_1    =   mode    ?   BYPASS_1_hard   :  pll_cfg_ctr ? BYPASS_1_soft : BYPASS_1_hard;
+    assign  DSMPD_1     =   mode    ?   DSMPD_1_hard    :  pll_cfg_ctr ? DSMPD_1_soft : DSMPD_1_hard;
+    assign  FBDIV_1     =   mode    ?   FBDIV_1_hard    :  pll_cfg_ctr ? FBDIV_1_soft : FBDIV_1_hard;
+    assign  FOUTPOSTDIVPD_1 =   mode    ?   FOUTPOSTDIVPD_1_hard    : pll_cfg_ctr?  FOUTPOSTDIVPD_1_soft :FOUTPOSTDIVPD_1_hard;
+    assign  FOUTVCOPD_1 =   mode    ?   FOUTVCOPD_1_hard    : pll_cfg_ctr ?  FOUTVCOPD_1_soft :FOUTVCOPD_1_hard;
+    assign  FREF_1  =   mode    ?   FREF_1_hard :  pll_cfg_ctr ?  FREF_1_soft : FREF_1_hard;
+    assign  PD_1    =   mode    ?   PD_1_hard   : pll_cfg_ctr ?  PD_1_soft : PD_1_hard;
+    assign  POSTDIV1_1  =   mode    ?   POSTDIV1_1_hard : pll_cfg_ctr ?  POSTDIV1_1_soft : POSTDIV1_1_hard;
+    assign  POSTDIV2_1  =   mode    ?   POSTDIV2_1_hard : pll_cfg_ctr ?  POSTDIV2_1_soft : POSTDIV2_1_hard;
+    assign  REFDIV_1    =   mode    ?   REFDIV_1_hard   : pll_cfg_ctr ?  REFDIV_1_soft :REFDIV_1_hard;
+    //pll2 config select
+    assign  BYPASS_2    =   mode    ?   BYPASS_2_hard   :  pll_cfg_ctr ? BYPASS_2_soft : BYPASS_2_hard;
+    assign  DSMPD_2     =   mode    ?   DSMPD_2_hard    :  pll_cfg_ctr ? DSMPD_2_soft : DSMPD_2_hard;
+    assign  FBDIV_2     =   mode    ?   FBDIV_2_hard    :  pll_cfg_ctr ? FBDIV_2_soft : FBDIV_2_hard;
+    assign  FOUTPOSTDIVPD_2 =   mode    ?   FOUTPOSTDIVPD_2_hard    : pll_cfg_ctr?  FOUTPOSTDIVPD_2_soft :FOUTPOSTDIVPD_2_hard;
+    assign  FOUTVCOPD_2 =   mode    ?   FOUTVCOPD_2_hard    : pll_cfg_ctr ?  FOUTVCOPD_2_soft :FOUTVCOPD_2_hard;
+    assign  FREF_2  =   mode    ?   FREF_2_hard :  pll_cfg_ctr ?  FREF_2_soft : FREF_2_hard;
+    assign  PD_2    =   mode    ?   PD_2_hard   : pll_cfg_ctr ?  PD_2_soft : PD_2_hard;
+    assign  POSTDIV1_2  =   mode    ?   POSTDIV1_2_hard : pll_cfg_ctr ?  POSTDIV1_2_soft : POSTDIV1_2_hard;
+    assign  POSTDIV2_2  =   mode    ?   POSTDIV2_2_hard : pll_cfg_ctr ?  POSTDIV2_2_soft : POSTDIV2_2_hard;
+    assign  REFDIV_2    =   mode    ?   REFDIV_2_hard   : pll_cfg_ctr ?  REFDIV_2_soft :REFDIV_2_hard;
+
+
     PLLTS28HPMLAINT PLLTS28HPMLAINT_1(.BYPASS(BYPASS_1), .DSMPD(DSMPD_1), .FBDIV(FBDIV_1),
         .FOUTPOSTDIVPD(FOUTPOSTDIVPD_1), .FOUTVCOPD(FOUTVCOPD_1), .FREF(FREF), .PD(PD_1), 
         .POSTDIV1(POSTDIV1_1), .POSTDIV2(POSTDIV2_1), .REFDIV(REFDIV_1), .CLKSSCG(CLKSSCG_1),
@@ -723,3 +856,4 @@ module crg(
         .FOUTPOSTDIV(FOUTPOSTDIV_2), .FOUTVCO(FOUTVCO_2), .LOCK(LOCK_2));
 
 endmodule
+
