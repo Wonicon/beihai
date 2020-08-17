@@ -13,7 +13,5 @@
 `define UART_END         32'h101fffff
 
 
-`define GPIO_START       32'h41300000
-`define GPIO_END         32'h413fffff
-
-
+`define GPIO_START       32'h10200000
+`define GPIO_END         32'h102fffff

@@ -1,4 +1,4 @@
-`define BACKEND
+//`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"
@@ -34,18 +34,17 @@ chiplink_tx_data,
 uart_rx,
 uart_tx,
 //gpio
-//gpio0 
-//gpio1
-//gpio2
-//gpio3
 gpio_0,  //TCK input
 gpio_1,  //TDI input
 gpio_2,  //TMS input
 gpio_3,  //TDO output
-//gpio_oe,
 //interrupt
 interrupt,
-core_clk_out
+core_clk_out,
+//pll soft config 
+pll_cfg_1,
+pll_cfg_2,
+pll_cfg_ctr
 );
 
 //cpu clock in
@@ -77,11 +76,6 @@ output[`chiplink_data_w - 1 : 0]         chiplink_tx_data;
 input           uart_rx;
 output          uart_tx;
 //gpio
-/*
-input   [`GPIO_W-1:0]     gpio_i;
-output  [`GPIO_W-1:0]     gpio_o;
-output  [`GPIO_W-1:0]     gpio_oe;
-*/
 input           gpio_0;
 input           gpio_1;
 input           gpio_2;
@@ -89,6 +83,11 @@ output          gpio_3;
 //interrupt
 input   [`interrupt-1:0]   interrupt;
 output        core_clk_out;
+
+//pll soft config
+output reg [63:0]  pll_cfg_1;
+output reg [63:0]  pll_cfg_2;
+output reg   pll_cfg_ctr;
 
 //
 wire            core_clk;
@@ -319,6 +318,7 @@ always @(posedge dev_clk) begin
   end
 end
 
+
 assign mmio_axi4_0_awready = 1;
 assign mmio_axi4_0_wready = 1;
 assign mmio_axi4_0_arready = 1;
@@ -351,6 +351,38 @@ always @ (posedge dev_clk or negedge rst_n)begin
             core_rst <= rst_s2;
     end
 end
+
+//deal with pll soft cfg ctr single
+reg [31:0] pll_temp;
+always @ (posedge apb_clk_in or negedge rst_n)begin
+  if(!rst_n) begin
+      pll_cfg_ctr <= 1'b0;
+      pll_cfg_1 <= 64'h0000_0000_0000_0000;
+      pll_cfg_2 <= 64'h0000_0000_0000_0000;
+      pll_temp <= 64'd0;
+  end
+  else begin
+    pll_cfg_ctr <= ((pll_cfg_1 != 64'h0000_0000_0000_0000 )&&(pll_cfg_2 != 64'h0000_0000_0000_0000))?1'b1:1'b0;
+
+    if (s_psel2 && s_penable2 && s_pwrite2) begin
+      case (s_paddr2[3:2])
+        2'b00: pll_temp <= s_pwdata2;
+        2'b01: pll_cfg_1 <= {s_pwdata2, pll_temp};
+        2'b10: pll_temp <= s_pwdata2;
+        2'b11: pll_cfg_2 <= {s_pwdata2, pll_temp};
+      endcase
+    end
+    //test pll1_5 pll2_by
+    //pll_cfg_1 <= 64'h0000_0000_0228_0052;
+    //pll_cfg_2 <= 64'h0000_0000_0224_0053;
+  end
+end
+
+assign s_pready2 = s_psel2 && s_penable2;
+assign s_prdata2 = s_paddr2[3:2] == 2'b00 ? pll_cfg_1[31:0] :
+                                    2'b01 ? pll_cfg_1[63:32] :
+                                    2'b10 ? pll_cfg_2[31:0] :
+                                    2'b11 ? pll_cfg_2[63:32] : 32'd0;
 
 `TOP top (
   .clock(dev_clk),
@@ -523,6 +555,10 @@ end
   // }}}
 );
 
+
+//pll_config
+
+
 //apb_demux _fifo
 assign  fifo_pclk = apb_clk_in;
 assign  fifo_presetn = rst_n;
@@ -657,48 +693,6 @@ uart_apb u0_uart_apb
   .srx       (uart_rx),
   .stx       (uart_tx)
 );
-//gpio
-
-
-/*
-wire [31:0] gpio_input;
-wire [31:0] gpio_output;
-wire [31:0] gpio_outen;
-
-assign gpio_input[`GPIO_W - 1 : 0] = gpio_i;
-assign gpio_o = gpio_output[`GPIO_W - 1 : 0];
-assign gpio_oe = gpio_outen[`GPIO_W - 1 : 0];
-
-//gpio input as interrupt source input
-assign gpio_input[6] = irq_uart;
-assign gpio_input[7] = irq_spi;
-assign gpio_input[31:8] = 0;
-
-assign irq_cpu = irq_gpio;
-gpio_apb u0_gpio_apb
-(
-  //apb
-  .pclk(s_pclk2),
-  .preset(!s_presetn2),
-  .paddr({2'b00,s_paddr2}),
-  .psel(s_psel2),
-  .penable(s_penable2),
-  .pwrite(s_pwrite2),
-  .pwdata(s_pwdata2),
-  .pwstrb(s_pwstrb2),
-  .pready(s_pready2),
-  .prdata(s_prdata2),
-  .pslverr(s_pslverr2),
-  //io pad
-  .gpio_i(gpio_input),
-  .gpio_o(gpio_output),
-  .gpio_oe(gpio_outen),
-
-  .gpio_int(irq_gpio),
-  .aux_i(),
-  .clk_pad_i()
-);
-*/
 endmodule
 
 

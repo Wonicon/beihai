@@ -11,6 +11,8 @@ module asic_system
 
 reg         sys_clk;
 reg         sys_rst;
+
+reg         pll_mode;
 wire        rst_n;
 //spi
 wire        spi_clk;
@@ -42,7 +44,7 @@ asic_top u0_asic_top(
 .SPI_MOSI(spi_mosi),
 //uart
 .UART_RX(uart_rx),
-.UART_TX(uart_rx),
+.UART_TX(uart_tx),
 //GPIO
 .GPIO0(gpio[0]),
 .GPIO1(gpio[1]),
@@ -127,11 +129,13 @@ asic_top u0_asic_top(
 .PLL_M3(pll_cfg[3]),
 .PLL_M4(pll_cfg[4]),
 .PLL_M5(pll_cfg[5]),
-//interrput
+//interrupt
 .INTERRUPT_0(interrupt[0]),
 .INTERRUPT_1(interrupt[1]),
 .INTERRUPT_2(core_clk_out)
 );
+assign interrupt[0] = 1'b0;
+assign interrupt[1] = pll_mode;
 
 N25Qxxx u0_spi_flash
 (
@@ -144,16 +148,17 @@ N25Qxxx u0_spi_flash
   .Vcc('d3000)
 );
 
-tty #() u0_tty
+tty u0_tty
 (
   .STX(uart_rx),
   .SRX(uart_tx)
 );
-assign pll_cfg=6'b00_0001;
+assign pll_cfg=6'b01_0010;
 
 initial begin
   sys_clk = 0;
   sys_rst = 0;
+  pll_mode = 1;
   //#10
   #1024
   sys_rst = 1;
