@@ -44,7 +44,7 @@ asic_top u0_asic_top(
 .SPI_MOSI(spi_mosi),
 //uart
 .UART_RX(uart_rx),
-.UART_TX(uart_rx),
+.UART_TX(uart_tx),
 //GPIO
 .GPIO0(gpio[0]),
 .GPIO1(gpio[1]),
@@ -134,6 +134,7 @@ asic_top u0_asic_top(
 .INTERRUPT_1(interrupt[1]),
 .INTERRUPT_2(core_clk_out)
 );
+assign interrupt[0] = 1'b0;
 assign interrupt[1] = pll_mode;
 
 N25Qxxx u0_spi_flash
@@ -147,7 +148,7 @@ N25Qxxx u0_spi_flash
   .Vcc('d3000)
 );
 
-tty #() u0_tty
+tty u0_tty
 (
   .STX(uart_rx),
   .SRX(uart_tx)
