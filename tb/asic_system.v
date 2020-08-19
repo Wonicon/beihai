@@ -148,24 +148,24 @@ N25Qxxx u0_spi_flash
   .Vcc('d3000)
 );
 
-tty u0_tty
+tty #(115200,0) u0_tty
 (
   .STX(uart_rx),
   .SRX(uart_tx)
 );
-assign pll_cfg=6'b01_0010;
+assign pll_cfg=6'b00_0000;
 
 initial begin
   sys_clk = 0;
   sys_rst = 0;
-  pll_mode = 1;
+  pll_mode = 0;
   //#10
   #1024
   sys_rst = 1;
 end
 
 always begin
-  #5.000 sys_clk <= ~sys_clk; 
+  #5.00 sys_clk <= ~sys_clk; 
 end
 
 initial begin

@@ -597,8 +597,23 @@ module crg_hard(
     /*assign clk_cpucore =   FOUTPOSTDIV_1;
     assign clk_cpudev =   FOUTPOSTDIV_2;
     */
+    /*
     assign clk_cpucore = mode ?  FOUTPOSTDIV_1 : (pll_cfg_ctr &LOCK_1 )? FOUTPOSTDIV_1 : sys_clk;
     assign clk_cpudev =  mode ? FOUTPOSTDIV_2 : (pll_cfg_ctr &LOCK_2)? FOUTPOSTDIV_2 : sys_clk;
+    */
+    //use ckmux cell
+    CKMUX2D4BWP35P140 u0_clk_cpucore(
+        .I0(sys_clk),
+        .I1(FOUTPOSTDIV_1),
+        .S(mode||(pll_cfg_ctr &LOCK_1)),
+        .Z(clk_cpucore)
+    );
+    CKMUX2D4BWP35P140 u0_clk_cpudev(
+        .I0(sys_clk),
+        .I1(FOUTPOSTDIV_1),
+        .S(mode||(pll_cfg_ctr &LOCK_1)),
+        .Z(clk_cpudev)
+    );
     //async_rst in and sync_rst out
     reg rst_s1,rst_s2;
     reg rst_sync_n;
@@ -625,9 +640,9 @@ module crg_hard(
     assign rst_gen = rst_cnt == `RST_CNT_END;
     //async_rst in and sync_rst out
 
-    reg rst_s3,rst_s4;;
-
-    reg rst_gen_sync;
+    reg rst_s3,rst_s4;
+    
+	reg rst_gen_sync;
     always @ (posedge sys_clk or negedge rst_gen)begin
         if(!rst_gen)begin
             rst_s3 <= 1'b0;
