@@ -1,4 +1,4 @@
-//`define BACKEND
+`define BACKEND
 
 `timescale 1ns / 1ps
 `include "global_define.v"

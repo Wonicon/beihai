@@ -50,7 +50,7 @@ parameter   spi_cs_num       = 2
   output                     pslverr,
 
   output                     spi_clk,
-  output  [spi_cs_num-1:0]  spi_cs,
+  output  [spi_cs_num-1:0]   spi_cs,
   output                     spi_mosi,
   input                      spi_miso,
   output                     spi_irq_out
@@ -88,6 +88,8 @@ wire  [31:0]             spi_ctl_data;
 
 wire  spi_irq;
 
+wire [`P_ADDR_W-1:0] paddr_align = {paddr[`P_ADDR_W-1:2], 2'b00};
+
 assign clk         = pclk;
 assign rst_n       = presetn;
 assign pclk_spi    = pclk;
@@ -109,10 +111,10 @@ always@(posedge clk) begin
   if(!rst_n)
     paddr_reg <= 32'h0;
   if(psel && penable)
-    paddr_reg <= paddr;
+    paddr_reg <= paddr_align;
 end
 
-assign paddr_in = paddr | paddr_reg;
+assign paddr_in = paddr_align | paddr_reg;
 
 assign is_flash = paddr_in >= flash_addr_start && paddr_in <= flash_addr_end;
 
@@ -120,7 +122,7 @@ assign is_flash = paddr_in >= flash_addr_start && paddr_in <= flash_addr_end;
 assign psel_spi    = spi_state == `SPI_WAIT_READY;
 assign penable_spi = spi_state == `SPI_ENABLE || spi_state == `SPI_WAIT_READY;
 
-assign spi_irq_out = cmd_state == `CMD_SPI_CSR   ? spi_irq : 1'b0; 
+assign spi_irq_out = cmd_state == `CMD_SPI_CSR   ? spi_irq : 1'b0;
 
 assign pwrite_spi = cmd_state == `CMD_SPI_CSR   ? pwrite :
                     cmd_state == `CMD_RD_RXD0   ? 1'b0   : 1'b1;
@@ -133,7 +135,7 @@ assign pwstrb_spi = cmd_state == `CMD_SPI_CSR   ? pwstrb : 4'hf;
 
 assign prdata = prdata_spi;
 
-assign paddr_spi  = cmd_state == `CMD_SPI_CSR   ? paddr[4:0]      : 
+assign paddr_spi  = cmd_state == `CMD_SPI_CSR   ? paddr_align[4:0]:
                     cmd_state == `CMD_WR_TXD0   ? `SPI_ADDR_TXD0  :
                     cmd_state == `CMD_WR_TXD1   ? `SPI_ADDR_TXD1  :
                     cmd_state == `CMD_WR_CTL    ? `SPI_ADDR_CTL   :
