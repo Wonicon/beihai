@@ -610,7 +610,7 @@ module crg_hard(
     );
     CKMUX2D4BWP35P140 u0_clk_cpudev(
         .I0(sys_clk),
-        .I1(FOUTPOSTDIV_1),
+        .I1(FOUTPOSTDIV_2),
         .S(mode||(pll_cfg_ctr &LOCK_1)),
         .Z(clk_cpudev)
     );
