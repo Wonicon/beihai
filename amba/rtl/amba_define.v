@@ -6,12 +6,12 @@
 
 //24bit
 `define SPI_FLASH_START  32'h10000000
-`define SPI_FLASH_END    32'h100FFFFF
-
+`define SPI_FLASH_END    32'h10FFFFFF
+`define SPI_END          32'h11FFFFFF
 //20bit
-`define UART_START       32'h10100000
-`define UART_END         32'h101fffff
+`define UART_START       32'h12000000
+`define UART_END         32'h121fffff
 
 
-`define GPIO_START       32'h10200000
-`define GPIO_END         32'h102fffff
+`define GPIO_START       32'h12200000
+`define GPIO_END         32'h122fffff
