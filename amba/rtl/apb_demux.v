@@ -56,7 +56,7 @@ wire port_sel1;
 wire port_sel2;
 
 
-assign port_sel0 = paddr >= `SPI_FLASH_START && paddr <= `SPI_FLASH_END;
+assign port_sel0 = paddr >= `SPI_FLASH_START && paddr <= `SPI_END;
 assign port_sel1 = paddr >= `UART_START      && paddr <= `UART_END;
 assign port_sel2 = paddr >= `GPIO_START      && paddr <= `GPIO_END;
 
